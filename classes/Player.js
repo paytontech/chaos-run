@@ -4,6 +4,7 @@ class Player extends DynamicCreature {
     // this.type = "player";
     // this.pos = createVector(initX, initY);
     // this.vel = createVector(speed, 0);
+    this.speed = speed;
     this.jumpStrength = 350;
     console.log(speed);
     this.jumping = false;
@@ -36,7 +37,9 @@ class Player extends DynamicCreature {
     this.sprite.rotation = 0;
     gameWorld.deltaXOffset = 0;
     if (kb.pressing("d")) {
-      this.sprite.applyForceScaled(this.vel.x, 0);
+      if (this.sprite.velocity.x < this.speed) {
+        this.sprite.applyForceScaled(this.vel.x, 0);
+      }
       let keyIndex = this.keys.lastIndexOf("d");
       if (keyIndex == -1) {
         this.keys.push("d");
@@ -49,7 +52,9 @@ class Player extends DynamicCreature {
       }
     }
     if (kb.pressing("a")) {
-      this.sprite.applyForceScaled(-this.vel.x, 0);
+      if (-this.sprite.velocity.x < this.speed) {
+        this.sprite.applyForceScaled(-this.vel.x, 0);
+      }
       let keyIndex = this.keys.lastIndexOf("a");
       if (keyIndex == -1) {
         this.keys.push("a");

@@ -1,8 +1,8 @@
 class World {
   constructor(player, autoscroll) {
     this.gameObjects = [player];
-    // this.createEnemies(3, false);
-    // this.createAirborne(3, true);
+    this.createEnemies(3, false);
+    this.createAirborne(3, true);
     this.timeBasedEvents = [];
     this.currentEvent = null;
     this.eventRunning = false;
