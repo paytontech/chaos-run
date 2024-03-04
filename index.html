@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+  <script defer src="https://unpkg.com/p5.collide2d"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
+  <script src="https://p5play.org/v3/planck.min.js"></script>
+  <script src="https://p5play.org/v3/p5play.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8" />
+
+</head>
+
+<body>
+  <main>
+  </main>
+  <script src="classes/InputManager.js"></script>
+  <script src="classes/states/State.js"></script>
+  <script src="classes/states/player/FallState.js"></script>
+  <script src="classes/states/IdleState.js"></script>
+  <script src="classes/states/player/JumpState.js"></script>
+  <script src="classes/states/proto/ProtoPhaseLeft.js"></script>
+  <script src="classes/states/proto/ProtoPhaseRight.js"></script>
+  <script src="classes/states/airborne/AirbornePhaseLeft.js"></script>
+  <script src="classes/states/airborne/AirbornePhaseRight.js"></script>
+  <script src="classes/FSM.js"></script>
+  <script src="classes/Dynamic.js"></script>
+  <script src="classes/DynamicCreature.js"></script>
+  <script src="classes/Player.js"></script>
+  <script src="classes/enemies/ProtoEnemy.js"></script>
+  <script src="classes/enemies/AirborneEnemy.js"></script>
+  <script src="classes/events/Event.js"></script>
+  <script src="classes/events/AntiGravEvent.js"></script>
+  <script src="classes/events/ShakeEverything.js"></script>
+  <script src="classes/events/SpawnMoreProto.js"></script>
+  <script src="classes/events/Projectiles.js"></script>
+  <script src="classes/World.js"></script>
+  <script src="classes/WorldBackground.js"></script>
+  <script src="sketch.js"></script>
+</body>
+
+</html>
