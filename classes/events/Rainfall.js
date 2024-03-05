@@ -55,6 +55,7 @@ class Rain extends DynamicCreature {
         this.sprite.w = 10;
         // this.sprite.debug = true;
         this.sprite.mass = 0.25;
+        this.sprite.color = "cyan";
     }
     update(gameWorld) {
         this.sprite.applyForceScaled(0, -9);
