@@ -5,6 +5,7 @@
 - [x] redo enemy target system
 - [x] rewrite for p5.play
 - [x] reset functionality
+- [ ] implement snake
 - [-] design player sprites & animations
 - [ ] add different backgrounds that cycle w/ progress
 - [ ] add more [events](#event-ideas)
