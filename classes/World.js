@@ -6,7 +6,7 @@ class World {
     this.timeBasedEvents = [];
     this.currentEvent = null;
     this.eventRunning = false;
-    this.startTime = millis();
+    this.startTime = millis() + 7500;
     this.onEventChange = () => { };
     this.autoscroll = autoscroll;
   }
@@ -106,7 +106,7 @@ class World {
     }
   }
   checkEventTimer() {
-    if (millis() - this.startTime >= 10000) {
+    if (millis() - this.startTime >= 12500) {
       if (this.eventRunning) {
         console.log("event stopping");
         this.currentEvent.reset(this);
