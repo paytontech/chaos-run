@@ -46,6 +46,7 @@ function setup() {
     restartButton.hide();
     score = 0;
     displayedFailScreen = false;
+    doingTextAnim = false;
   });
 }
 

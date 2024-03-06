@@ -44,7 +44,7 @@ class Umbrella extends DynamicCreature {
         this.sprite = new Sprite(this.pos.x, this.pos.y, 100, 10, "k");
         // this.sprite.debug = true;
         this.targetPos = createVector(random(this.sprite.x - 50, this.sprite.x + 50), this.sprite.y);
-        this.sprite.velocity.x = random([-2, 2]);
+        this.sprite.velocity.x = random([-1.5, 1.5]);
         this.startTime = millis();
         this.changedDirection = false;
     }
@@ -55,7 +55,7 @@ class Umbrella extends DynamicCreature {
             }
         }
 
-        if (millis() - this.startTime > 2500 && !this.changedDirection) {
+        if (millis() - this.startTime > 5000 && !this.changedDirection) {
             // console.log((millis() - this.startTime) % 1000);
             this.sprite.velocity.x = -this.sprite.velocity.x;
             this.changedDirection = true;
@@ -69,7 +69,7 @@ class Rain extends DynamicCreature {
         this.sprite.remove();
         this.sprite = new Sprite(this.pos.x, this.pos.y);
         this.sprite.collider = "d";
-        this.sprite.h = 50;
+        this.sprite.h = 25;
         this.sprite.w = 5;
         // this.sprite.debug = true;
         this.sprite.mass = 0.5;

@@ -13,6 +13,9 @@ class FallState extends State {
 
     }
     handleInput() {
+        if (kb.pressing("down") < 30) {
+            this.subject.sprite.applyForce((this.subject.jumpStrength / 200) * kb.pressing("down"));
+        }
         if (this.subject.sprite.collides(gameWorldBG.floor)) {
             return this.subject.idleState;
         }
