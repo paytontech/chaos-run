@@ -6,7 +6,7 @@ class World {
     this.timeBasedEvents = [];
     this.currentEvent = null;
     this.eventRunning = false;
-    this.startTime = millis() + 7500;
+    this.startTime = millis() - 7500;
     this.onEventChange = () => { };
     this.autoscroll = autoscroll;
   }

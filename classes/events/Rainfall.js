@@ -88,6 +88,13 @@ class Rain extends DynamicCreature {
         if (this.sprite.y == height / 1.5) {
             this.sprite.remove();
         }
+        for (let obj of gameWorld.gameObjects) {
+            if (obj.type != "player") {
+                if (this.sprite.collides(obj.sprite)) {
+                    this.sprite.remove();
+                }
+            }
+        }
         if (this.sprite.collides(gameWorldBG.floor)) {
             this.sprite.remove();
         }
