@@ -6,8 +6,8 @@ class Projectiles extends Event {
     }
     activate(gameWorld) {
         var currentDelay = 0;
-        for (let i = 0; i < 5; i++) {
-            currentDelay += 500;
+        for (let i = 0; i < 16; i++) {
+            currentDelay += 400;
             setTimeout(() => {
                 var proposedProjectile = new Projectile(gameWorld);
                 this.projectiles.push(proposedProjectile);
@@ -36,6 +36,7 @@ class Projectiles extends Event {
         for (let projectile of this.projectiles) {
             projectile.sprite.remove();
         }
+        this.projectiles = [];
     }
 }
 
@@ -50,7 +51,11 @@ class Projectile extends DynamicCreature {
     }
     update(gameWorld) {
         this.sprite.y += this.vel.y;
-        this.sprite.x += (camera.x - this.lastCameraX) / 4;
+        if (this.sprite.y < height / 8) {
+            this.sprite.x += (camera.x - this.lastCameraX);
+        } else {
+            this.sprite.x += (camera.x - this.lastCameraX) / 4;
+        }
         this.lastCameraX = camera.x;
         this.checkCollision(gameWorld);
     }

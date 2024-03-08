@@ -9,16 +9,17 @@ class AirborneEnemy extends DynamicCreature {
         this.fsm.setInitialState(this.idleState);
         this.sprite.img = "assets/sprites/enemies/airborne/airborne-flight.gif";
         this.swoopState = new SwoopState(this, true);
+        this.killed = false;
     }
     update(world) {
-        this.sprite.x = this.pos.x;
-        this.sprite.y = this.pos.y;
-        this.fsm.update();
-        this.checkCollision(world);
-        let randNumber = random(0, 50);
-        if (~~randNumber == 12 || true) {
-            this.fsm.pushState(this.swoopState);
+        if (!this.killed) {
+            this.sprite.x = this.pos.x;
+            this.sprite.y = this.pos.y;
+            this.fsm.update();
+            this.checkCollision(world);
         }
+
+
     }
     checkCollision(world) {
         if (this.sprite.collides(world.gameObjects[0].sprite)) {

@@ -41,7 +41,7 @@ class Umbrella extends DynamicCreature {
     constructor(gameWorld) {
         super("umbrella", createVector(random(0 + gameWorld.gameObjects[0].sprite.x, width + gameWorld.gameObjects[0].sprite.x), height / 4), createVector(0, 0), false, false, true, 1, new IdleState());
         this.sprite.remove();
-        this.sprite = new Sprite(this.pos.x, this.pos.y, 150, 10, "k");
+        this.sprite = new Sprite(this.pos.x, this.pos.y, 200, 10, "k");
         // this.sprite.debug = true;
         this.targetPos = createVector(random(this.sprite.x - 50, this.sprite.x + 50), this.sprite.y);
         this.sprite.velocity.x = random([-1.2, 1.2]);
@@ -88,16 +88,10 @@ class Rain extends DynamicCreature {
         if (this.sprite.y == height / 1.5) {
             this.sprite.remove();
         }
-        for (let obj of gameWorld.gameObjects) {
-            if (obj.type != "player") {
-                if (this.sprite.collides(obj.sprite)) {
-                    this.sprite.remove();
-                }
-            }
-        }
         if (this.sprite.collides(gameWorldBG.floor)) {
             this.sprite.remove();
         }
+
 
         // if (this.sprite.velocity.y == 0) {
         //     this.sprite.remove();

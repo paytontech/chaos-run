@@ -25,7 +25,7 @@ class ProtoEnemy extends DynamicCreature {
   }
 
   update(gameWorld) {
-
+    this.sprite.rotation = 0;
     if (!this.killed) {
       this.fsm.update();
       this.checkCollision(gameWorld);
@@ -57,11 +57,7 @@ class ProtoEnemy extends DynamicCreature {
   checkCollision(gameWorld) {
     if (this.sprite.collides(gameWorld.gameObjects[0].sprite)) {
       if ((this.sprite.y - this.size / 2) > gameWorld.gameObjects[0].sprite.y) {
-        this.walkingDirection = "idle";
-        this.killed = true;
-        this.sprite.collider = "s";
-        this.killTime = millis();
-        this.onKilledEvent.activate(gameWorld);
+        this.kill();
       } else {
         gameWorld.gameObjects[0].kill();
       }
@@ -70,6 +66,13 @@ class ProtoEnemy extends DynamicCreature {
   onCollideWith(player) {
     console.log("collided");
     player.kill();
+  }
+  kill() {
+    this.walkingDirection = "idle";
+    this.killed = true;
+    this.sprite.collider = "s";
+    this.killTime = millis();
+    this.onKilledEvent.activate(gameWorld);
   }
   genTargetPos(gameWorld) {
     if (this.posPhase == 0) {

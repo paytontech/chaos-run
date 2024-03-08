@@ -57,6 +57,9 @@ class Player extends DynamicCreature {
     this.killed = true;
     world.gravity.y = 0;
     for (let obj of gameWorld.gameObjects) {
+      obj.sprite.collider = "d";
+      obj.sprite.bearing = random(-90, 90);
+      obj.sprite.rotation = random(0, 360);
       obj.sprite.applyForceScaled(0, random(100, 500));
       obj.sprite.applyTorque(random(-20, 20));
     }
@@ -74,5 +77,9 @@ class Player extends DynamicCreature {
     this.jumpPhase = 0;
     this.setDirectionRight = false;
     this.setDirectionLeft = false;
+    this.fsm = new FSM();
+    this.runLeftState = new RunLeftState(this, true);
+    this.runRightState = new RunRightState(this, true);
+    this.fsm.setInitialState(this.idleState);
   }
 }

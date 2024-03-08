@@ -10,7 +10,7 @@ class WorldBackground {
         this.floor.y = height / 1.34;
         this.floor.collider = "s";
         this.floor.h = 25;
-        this.floor.w = width * 3;
+        this.floor.w = width * 8;
         this.floor.visible = false;
         this.lastCameraX = camera.x;
         this.lastCameraY = camera.y;
@@ -38,11 +38,6 @@ class WorldBackground {
         this.lastCameraX = camera.x;
         this.lastCameraY = camera.y;
 
-        let playerX = this.gameWorld.gameObjects[0].pos.x;
-        if (playerX < 0) {
-            playerX = -playerX;
-        }
-        this.floor.width = this.floor.width + playerX;
         //TODO refactor this mess!
         image(this.bg, this.posX - width, this.posY, width, height);
         image(floorImg, this.posX - width, canvas.height / 1.4 + this.cameraDelta, width, 25);
@@ -59,11 +54,13 @@ class WorldBackground {
 
         if (this.posX <= -width) {
             this.posX = 0;
+            this.floor.w += width * 2;
             this.gameWorld.createEnemies(3);
             this.gameWorld.createAirborne(3);
         }
         if (this.posX > width) {
             this.posX = 0;
+            this.floor.w += width * 2;
             this.gameWorld.createEnemies(3);
             this.gameWorld.createAirborne(3);
         }

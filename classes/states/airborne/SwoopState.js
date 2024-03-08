@@ -3,12 +3,13 @@ class SwoopState extends State {
         super(subject, popable);
     }
     enter() {
-        this.target = gameWorld.gameObjects[0];
     }
     exit() {
     }
     update() {
-        this.subject.sprite.moveTo(this.target.sprite);
+        let subject = this.subject;
+        let player = gameWorld.gameObjects[0];
+
     }
     handleInput() {
     }

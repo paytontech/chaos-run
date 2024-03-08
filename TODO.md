@@ -14,6 +14,6 @@
 - [x] make enemies spawn as player progresses
 
 ## Event Ideas
-- [ ] everything flipped upside down
+- [ ] everything flipped vertically/horizontally
 - [x] projectiles fall from sky unpredictably
 - [x] rain event where you need to stay under an umbrella which changes position randomly
