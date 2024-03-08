@@ -1,6 +1,7 @@
 # Chaos Run TODO
 **in order of priority**
 
+- [ ] fix ground
 - [ ] airborne swoop state
 - [ ] implement snake
 - [ ] add umbrella sprite
