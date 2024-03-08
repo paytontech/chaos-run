@@ -10,6 +10,7 @@ class ShakeEverything extends Event {
       gameObjects[i].sprite.x += random(-1, 1);
     }
     gameObjects[0].update(gameWorld);
+    camera.x += random(-1, 1);
     var currentRuntime = millis() - this.startTime;
   }
   activate(gameWorld) {

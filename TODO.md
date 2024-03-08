@@ -1,7 +1,7 @@
 # Chaos Run TODO
 **in order of priority**
 
-- [ ] make enemies spawn as player progresses
+- [ ] airborne swoop state
 - [ ] implement snake
 - [ ] add umbrella sprite
 - [-] design player sprites & animations
@@ -11,6 +11,7 @@
 - [x] redo enemy target system
 - [x] rewrite for p5.play
 - [x] reset functionality
+- [x] make enemies spawn as player progresses
 
 ## Event Ideas
 - [ ] everything flipped upside down
