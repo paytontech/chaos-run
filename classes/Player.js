@@ -5,20 +5,11 @@ class Player extends DynamicCreature {
     // this.pos = createVector(initX, initY);
     // this.vel = createVector(speed, 0);
     this.speed = speed;
-    this.jumpStrength = 350;
     console.log(speed);
-    this.jumping = false;
-    this.jumpHeight = 100;
-    this.jumpTime = 400;
-    this.groundLevel = initY;
-    this.jumpStartTime = 0;
     this.killed = false;
     //jumpphase
     //0 - ground -> sky
     //1 - sky -> ground
-    this.jumpPhase = 0;
-    this.setDirectionRight = false;
-    this.setDirectionLeft = false;
     // this.sprite = new Sprite();
     this.sprite.x = initX;
     this.sprite.y = initY;
@@ -65,18 +56,8 @@ class Player extends DynamicCreature {
     }
   }
   reset() {
-    this.jumping = false;
-    this.jumpHeight = 100;
-    this.jumpTime = 400;
-    this.jumpStartTime = 0;
     this.killed = false;
     world.gravity.y = 10;
-    //jumpphase
-    //0 - ground -> sky
-    //1 - sky -> ground
-    this.jumpPhase = 0;
-    this.setDirectionRight = false;
-    this.setDirectionLeft = false;
     this.fsm = new FSM();
     this.runLeftState = new RunLeftState(this, true);
     this.runRightState = new RunRightState(this, true);

@@ -2,16 +2,10 @@ class ProtoEnemy extends DynamicCreature {
   constructor(initX, initY, speed, range) {
     super("proto", createVector(initX, initY), createVector(speed, 0), true, true, false, 1, "idle");
     this.type = "proto";
-    this.initPos = createVector(initX, initY);
-    this.targetPos = createVector(initX - 50, initY);
     this.range = range;
-    this.targetPosOverride = false;
-    this.posPhase = 0;
     this.killed = false;
     this.readyToReset = false;
     this.onKilledEvent = new SpawnMoreProto();
-    this.prevXOffset = 0;
-    this.walkingDirection = "idle";
     this.speed = speed;
     this.sprite.img = "assets/sprites/proto-moving.gif";
     this.sprite.x = initX;
@@ -29,17 +23,6 @@ class ProtoEnemy extends DynamicCreature {
     if (!this.killed) {
       this.fsm.update();
       this.checkCollision(gameWorld);
-      if (
-        numbersEqualWithinBounds(
-          this.pos.x,
-          this.targetPos.x,
-          0.5
-        ) ||
-        this.targetPosOverride
-      ) {
-        this.genTargetPos(gameWorld);
-        this.targetPosOverride = false;
-      }
     }
     if (this.killed) {
       gameWorld.gameObjects[0].sprite.overlaps(this.sprite);
