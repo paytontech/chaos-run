@@ -41,7 +41,7 @@ class Projectiles extends Event {
 
 class Projectile extends DynamicCreature {
     constructor(gameWorld) {
-        super("projectile", createVector(random(0 + gameWorld.gameObjects[0].pos.x, width + gameWorld.gameObjects[0].pos.x), -height), createVector(0, 2), true, false, false, 1);
+        super("projectile", createVector(random(0 + gameWorld.gameObjects[0].pos.x - (width / 4), width + gameWorld.gameObjects[0].pos.x - (width / 4)), -height), createVector(0, 2), true, false, false, 1);
         this.height = 100;
         this.sprite.remove();
         this.sprite = new Sprite(this.pos.x, this.pos.y, 25, this.height, "static");
@@ -50,6 +50,8 @@ class Projectile extends DynamicCreature {
     }
     update(gameWorld) {
         this.sprite.y += this.vel.y;
+        this.sprite.x += (camera.x - this.lastCameraX) / 4;
+        this.lastCameraX = camera.x;
         this.checkCollision(gameWorld);
     }
     display() {

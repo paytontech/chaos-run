@@ -12,4 +12,18 @@ class ShakeEverything extends Event {
     gameObjects[0].update(gameWorld);
     var currentRuntime = millis() - this.startTime;
   }
+  activate(gameWorld) {
+    let player = gameWorld.gameObjects[0];
+    let playerRunLeft = player.runLeftState;
+    let playerRunRight = player.runRightState;
+    player.runLeftState = playerRunRight;
+    player.runRightState = playerRunLeft;
+  }
+  reset(gameWorld) {
+    let player = gameWorld.gameObjects[0];
+    let playerRunLeft = player.runLeftState;
+    let playerRunRight = player.runRightState;
+    player.runLeftState = playerRunRight;
+    player.runRightState = playerRunLeft;
+  }
 }

@@ -59,9 +59,13 @@ class WorldBackground {
 
         if (this.posX <= -width) {
             this.posX = 0;
+            this.gameWorld.createEnemies(3);
+            this.gameWorld.createAirborne(3);
         }
         if (this.posX > width) {
             this.posX = 0;
+            this.gameWorld.createEnemies(3);
+            this.gameWorld.createAirborne(3);
         }
         if (this.posY >= height) {
             console.log("resetting posY");

@@ -23,6 +23,8 @@ class Player extends DynamicCreature {
     this.sprite.x = initX;
     this.sprite.y = initY;
     this.keys = [];
+    this.runLeftState = new RunLeftState(this, true);
+    this.runRightState = new RunRightState(this, true);
     this.fsm.setInitialState(this.idleState);
   }
 
@@ -36,44 +38,7 @@ class Player extends DynamicCreature {
     }
     this.sprite.rotation = 0;
     gameWorld.deltaXOffset = 0;
-    if (kb.pressing("d")) {
-      if (this.sprite.velocity.x < this.speed) {
-        this.sprite.applyForceScaled(this.vel.x, 0);
-      }
-      let keyIndex = this.keys.lastIndexOf("d");
-      if (keyIndex == -1) {
-        this.keys.push("d");
-      }
 
-    } else {
-      let keyIndex = this.keys.lastIndexOf("d");
-      if (keyIndex >= 0) {
-        this.keys.splice(keyIndex, 1);
-      }
-    }
-    if (kb.pressing("a")) {
-      if (-this.sprite.velocity.x < this.speed) {
-        this.sprite.applyForceScaled(-this.vel.x, 0);
-      }
-      let keyIndex = this.keys.lastIndexOf("a");
-      if (keyIndex == -1) {
-        this.keys.push("a");
-      }
-    } else {
-      let keyIndex = this.keys.lastIndexOf("a");
-      if (keyIndex >= 0) {
-        this.keys.splice(keyIndex, 1);
-      }
-    }
-    if (this.keys.length == 0) {
-      if (this.sprite.vel.x != 0) {
-        if (this.sprite.vel.x > 0) {
-          this.sprite.vel.x -= 0.1;
-        } else {
-          this.sprite.vel.x += 0.1;
-        }
-      }
-    }
 
     if (this.sprite.collides(gameWorldBG.floor)) {
       this.jumping = false;
