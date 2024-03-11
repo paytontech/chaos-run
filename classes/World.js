@@ -20,6 +20,7 @@ class World {
         console.log(enemyFuncI);
         let evalString = `${enemyFunctions[enemyFuncI]}(${iterations}, ${ignorePos})`;
         console.log(evalString);
+        //eval necessary because having a regular array of just [this.createProto, (etc)] makes the scope of this.createProto the array. meaning that if createProto calls `this`, it returns the array instead of World. fun!
         eval(evalString);
       }
     } else {
