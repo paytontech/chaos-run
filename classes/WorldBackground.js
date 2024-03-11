@@ -55,12 +55,14 @@ class WorldBackground {
         if (this.posX <= -width) {
             this.posX = 0;
             this.floor.x += width;
-            this.gameWorld.createEnemies(4, true);
+            if (this.gameWorld.gameObjects[0].sprite.x > width * 2) {
+                this.gameWorld.createEnemies(2, true);
+            }
         }
         if (this.posX > width) {
             this.posX = 0;
             this.floor.x -= width;
-            this.gameWorld.createEnemies(4, true);
+
         }
         if (this.posY >= height) {
             console.log("resetting posY");
