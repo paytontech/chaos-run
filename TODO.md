@@ -1,11 +1,11 @@
 # Chaos Run TODO
 **in order of priority**
 
-- [ ] fix ground
+- [x] fix ground
 - [ ] airborne swoop state
 - [ ] implement snake
 - [ ] add umbrella sprite
-- [-] design player sprites & animations
+- [ ] design player sprites & animations
 - [ ] add different backgrounds that cycle w/ progress
 - [ ] add more [events](#event-ideas)
 - [x] implement inheritance & Dynamic
@@ -18,3 +18,4 @@
 - [ ] everything flipped vertically/horizontally
 - [x] projectiles fall from sky unpredictably
 - [x] rain event where you need to stay under an umbrella which changes position randomly
+- [ ] blindfold event where the screen turns black
