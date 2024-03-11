@@ -11,6 +11,7 @@ class Player extends DynamicCreature {
     //0 - ground -> sky
     //1 - sky -> ground
     // this.sprite = new Sprite();
+    this.initY = initY;
     this.sprite.x = initX;
     this.sprite.y = initY;
     this.keys = [];
@@ -62,5 +63,6 @@ class Player extends DynamicCreature {
     this.runLeftState = new RunLeftState(this, true);
     this.runRightState = new RunRightState(this, true);
     this.fsm.setInitialState(this.idleState);
+    this.sprite.y = this.initY;
   }
 }
