@@ -11,7 +11,7 @@ class SpawnMoreProto extends Event {
       for (let i = 0; i < 5; i++) {
         currentDelay += 250;
         setTimeout(() => {
-          gameWorld.createEnemies(1, true);
+          gameWorld.createProto(1, true);
         }, currentDelay);
       }
     }

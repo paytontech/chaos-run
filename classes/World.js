@@ -1,16 +1,47 @@
 class World {
   constructor(player, autoscroll) {
     this.gameObjects = [player];
-    this.createEnemies(3, false);
-    this.createAirborne(3, true);
     this.timeBasedEvents = [];
     this.currentEvent = null;
     this.eventRunning = false;
     this.startTime = millis() - 10000;
     this.onEventChange = () => { };
+    this.createEnemies(10, false);
     this.autoscroll = autoscroll;
   }
   createEnemies(count, ignorePos) {
+    let enemyFunctions = ["this.createProto", "this.createAirborne"];
+    // console.log(this);
+    if (count % enemyFunctions.length == 0) {
+      let iterations = count / enemyFunctions.length;
+      console.log(iterations);
+      for (let enemyFuncI = 0; enemyFuncI < enemyFunctions.length; enemyFuncI++) {
+        // enemyFunctions[enemyFuncI](iterations, ignorePos);
+        console.log(enemyFuncI);
+        let evalString = `${enemyFunctions[enemyFuncI]}(${iterations}, ${ignorePos})`;
+        console.log(evalString);
+        eval(evalString);
+      }
+    } else {
+      if (count < enemyFunctions.length) {
+        let evalString = `${enemyFunctions[0]}(${count}, ${ignorePos})`;
+        console.log(evalString);
+        eval(evalString);
+      } else {
+        let iterations = count / enemyFunctions.length;
+        iterations = Math.floor(iterations);
+        console.log(iterations);
+        for (let enemyFuncI = 0; enemyFuncI < enemyFunctions.length; enemyFuncI++) {
+          // enemyFunctions[enemyFuncI](iterations, ignorePos);
+          console.log(enemyFuncI);
+          let evalString = `${enemyFunctions[enemyFuncI]}(${iterations}, ${ignorePos})`;
+          console.log(evalString);
+          eval(evalString);
+        }
+      }
+    }
+  }
+  createProto(count, ignorePos) {
     for (let i = 0; i < count; i++) {
       var proposedEnemy = new ProtoEnemy(
         random(this.gameObjects[0].sprite.x, this.gameObjects[0].sprite.x + width * 2),
@@ -140,8 +171,7 @@ class World {
     }
     this.gameObjects[0].reset();
     this.gameObjects = [this.gameObjects[0]];
-    this.createEnemies(3);
-    this.createAirborne(3);
+    this.createEnemies(5);
 
     this.currentEvent = null;
 
