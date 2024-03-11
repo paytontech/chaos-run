@@ -20,7 +20,7 @@ class JumpState extends State {
         // this.subject.sprite.mass -= (kb.pressing(" ") / 120)
         // console.log(this.subject.sprite.mass)
         if (kb.pressing(" ") < 30) {
-            this.subject.sprite.applyForce((this.subject.jumpStrength / 1000) * kb.pressing(" "));
+            this.subject.sprite.applyForce((this.subject.jumpStrength / 800) * kb.pressing(" "));
         }
 
         if (kb.presses("down")) {

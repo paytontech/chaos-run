@@ -21,6 +21,7 @@ class Rainfall extends Event {
         }
     }
     reset(gameWorld) {
+        gameWorld.gameObjects[0].vel.x = this.initPlayerXVelocity;
         this.umbrella.sprite.remove();
         for (let rainEntity of this.rain) {
             rainEntity.sprite.remove();
@@ -29,6 +30,9 @@ class Rainfall extends Event {
         this.addedMoreRain = false;
     }
     activate(gameWorld) {
+        this.initPlayerXVelocity = gameWorld.gameObjects[0].vel.x;
+        //needed to compensate for lag caused by massive amounts of rain
+        gameWorld.gameObjects[0].vel.x *= 2;
         this.umbrella = new Umbrella(gameWorld);
         for (let i = 0; i < 200; i++) {
             this.rain.push(new Rain(gameWorld));
@@ -67,6 +71,7 @@ class Rain extends DynamicCreature {
     constructor(gameWorld) {
         super("rain", createVector(random(gameWorld.gameObjects[0].sprite.x - width / 2, gameWorld.gameObjects[0].sprite.x + width / 2), -height - random(height, height * 2)), createVector(0, 0), true, false, false, 1, new IdleState());
         this.sprite.remove();
+        this.initX = this.pos.x;
         this.sprite = new Sprite(this.pos.x, this.pos.y);
         this.sprite.collider = "d";
         this.sprite.h = 25;
@@ -75,12 +80,16 @@ class Rain extends DynamicCreature {
         this.sprite.mass = 0.5;
         this.sprite.color = "cyan";
         this.sprite.strokeWeight = 0;
+        // this.sprite.debug = true;
         this.lastPlayerPos = gameWorld.gameObjects[0].sprite.x;
     }
     update(gameWorld) {
         let deltaUmbrella = gameWorld.gameObjects[0].sprite.x - this.lastPlayerPos;
         this.lastPlayerPos = gameWorld.gameObjects[0].sprite.x;
         this.sprite.x += deltaUmbrella;
+        this.sprite.bearing = 0;
+        this.sprite.rotation = 0;
+
         this.sprite.applyForceScaled(0, -9);
         if (gameWorld.gameObjects[0].sprite.collides(this.sprite)) {
             gameWorld.gameObjects[0].kill();
