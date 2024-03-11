@@ -25,10 +25,10 @@ function setup() {
   new Canvas(windowWidth, 400);
   world.gravity.y = 10;
   gameWorld = new World(new Player(width / 4, height / 1.5, 5), false);
-  gameWorld.registerEvent(new AntiGravEvent());
-  gameWorld.registerEvent(new ShakeEverything());
+  // gameWorld.registerEvent(new AntiGravEvent());
+  // gameWorld.registerEvent(new ShakeEverything());
   gameWorld.registerEvent(new Projectiles());
-  gameWorld.registerEvent(new Rainfall());
+  // gameWorld.registerEvent(new Rainfall());
   gameWorld.onEventChange = () => {
     animStartTime = millis();
     doingTextAnim = gameWorld.eventRunning;
@@ -121,7 +121,7 @@ function getScore() {
   if (!gameWorld.gameObjects[0].killed) {
     let playerVel = gameWorld.gameObjects[0].sprite.velocity.x;
     if (playerVel < 0) {
-      playerVel = -playerVel;
+      return;
     }
     score += 0.1 * playerVel;
   }
