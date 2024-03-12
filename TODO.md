@@ -6,6 +6,9 @@
 - [ ] implement snake
 - [ ] add umbrella sprite
 - [ ] design player sprites & animations
+- [ ] map obstacles
+- [ ] collectables
+- [ ] coins
 - [ ] add different backgrounds that cycle w/ progress
 - [ ] add more [events](#event-ideas)
 - [x] implement inheritance & Dynamic
