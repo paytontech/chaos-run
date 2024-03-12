@@ -29,7 +29,6 @@ function setup() {
   gameWorld.registerEvent(new ShakeEverything());
   gameWorld.registerEvent(new Projectiles());
   gameWorld.registerEvent(new Rainfall());
-  gameWorld.registerEvent(new UpsideDown());
 
   gameWorld.onEventChange = () => {
     animStartTime = millis();
