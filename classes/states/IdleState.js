@@ -4,6 +4,9 @@ class IdleState extends State {
     }
     enter() {
         this.subject.sprite.color = color(255, 0, 0);
+        if (this.subject.type == "player") {
+            this.subject.sprite.velocity.y = 0;
+        }
     }
     exit() {
     }
