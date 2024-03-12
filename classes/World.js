@@ -6,7 +6,7 @@ class World {
     this.eventRunning = false;
     this.startTime = millis() - 10000;
     this.onEventChange = () => { };
-    this.createEnemies(10, false);
+    // this.createEnemies(10, false);
     this.autoscroll = autoscroll;
   }
   createEnemies(count, ignorePos) {

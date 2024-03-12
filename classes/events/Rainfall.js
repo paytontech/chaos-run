@@ -10,7 +10,7 @@ class Rainfall extends Event {
             obj.update(gameWorld);
         }
         for (let rainEntity of this.rain) {
-            rainEntity.update(gameWorld);
+            rainEntity.update(gameWorld, this.umbrella);
         }
         this.umbrella.update(gameWorld, this.rain);
         if (millis() - this.startTime >= 4000 && !this.addedMoreRain) {
@@ -83,7 +83,7 @@ class Rain extends DynamicCreature {
         // this.sprite.debug = true;
         this.lastPlayerPos = gameWorld.gameObjects[0].sprite.x;
     }
-    update(gameWorld) {
+    update(gameWorld, umbrella) {
         let deltaUmbrella = gameWorld.gameObjects[0].sprite.x - this.lastPlayerPos;
         this.lastPlayerPos = gameWorld.gameObjects[0].sprite.x;
         this.sprite.x += deltaUmbrella;
@@ -101,7 +101,11 @@ class Rain extends DynamicCreature {
             this.sprite.remove();
         }
 
-
+        if (this.sprite.y >= umbrella.sprite.y) {
+            if (this.sprite.x >= (umbrella.sprite.x - (umbrella.sprite.w / 2)) && this.sprite.x <= (umbrella.sprite.x + (umbrella.sprite.w / 2))) {
+                this.sprite.remove();
+            }
+        }
         // if (this.sprite.velocity.y == 0) {
         //     this.sprite.remove();
         // }

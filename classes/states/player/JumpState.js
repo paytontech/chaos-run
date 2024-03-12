@@ -27,6 +27,18 @@ class JumpState extends State {
             return this.subject.fallState;
         }
 
+        if (kb.pressing("a")) {
+            if (-this.subject.sprite.velocity.x < this.subject.speed) {
+                this.subject.sprite.applyForceScaled(-this.subject.vel.x, 0);
+            }
+        }
+
+        if (kb.pressing("d")) {
+            if (this.subject.sprite.velocity.x < this.subject.speed) {
+                this.subject.sprite.applyForceScaled(this.subject.vel.x, 0);
+            }
+        }
+
         if (this.subject.sprite.vel.y > 0) {
             return this.subject.fallState;
         }
