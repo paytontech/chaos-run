@@ -13,11 +13,11 @@ class IdleState extends State {
         if (this.subject.type == "proto" || this.subject.type == "airborne") {
             return this.subject.leftPhase;
         }
-        if (kb.presses(" ") && this.subject.type == "player") {
+        if (this.jumpPressed() && this.subject.type == "player") {
             return this.subject.jumpState;
         }
         if (this.subject.type == "player") {
-            if (kb.pressing("d")) {
+            if (this.goingRight()) {
 
 
                 let keyIndex = this.subject.keys.lastIndexOf("d");
@@ -32,7 +32,7 @@ class IdleState extends State {
                     this.subject.keys.splice(keyIndex, 1);
                 }
             }
-            if (kb.pressing("a")) {
+            if (this.goingLeft(0)) {
 
                 let keyIndex = this.subject.keys.lastIndexOf("a");
                 if (keyIndex == -1) {
@@ -55,5 +55,34 @@ class IdleState extends State {
                 }
             }
         }
+    }
+    goingRight() {
+
+        if (kb.presses("d")) return true;
+        var goingRight = false;
+        for (let touch of touches) {
+            if (touch.x > width / 2) goingRight = true;
+        }
+        return goingRight;
+    }
+    goingLeft() {
+        if (kb.presses("a")) return true;
+        var goingLeft = false;
+        for (let touch of touches) {
+            if (touch.x < width / 2) goingLeft = true;
+        }
+        return goingLeft;
+    }
+    jumpPressed() {
+        if (kb.presses(" ")) return true;
+        var jumping = false;
+        var touchDeltaY = 0;
+        if (touches[0] != undefined) {
+            if (touchDeltaY == 0) touchDeltaY = touches[0].y;
+            touchDeltaY = touches[0].y - touchDeltaY;
+        }
+        console.log(touchDeltaY);
+        if (touchDeltaY > 100) jumping = true;
+        return jumping;
     }
 }
