@@ -56,7 +56,7 @@ class WorldBackground {
             this.posX = 0;
             this.floor.x += width;
             if (this.gameWorld.gameObjects[0].sprite.x > width * 2) {
-                this.gameWorld.createEnemies(2, true);
+                this.gameWorld.createEnemies(2, false);
             }
         }
         if (this.posX > width) {

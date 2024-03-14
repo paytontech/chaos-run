@@ -1,6 +1,8 @@
 # Chaos Run TODO
 **in order of priority**
 
+- [ ] better support for dynamic size window
+- [ ] cleanup [WorldBackground.js](classes/WorldBackground.js)
 - [ ] airborne swoop state
 - [ ] implement snake
 - [ ] add umbrella sprite

@@ -11,32 +11,24 @@ class World {
   }
   createEnemies(count, ignorePos) {
     let enemyFunctions = ["this.createProto", "this.createAirborne"];
-    // console.log(this);
     if (count % enemyFunctions.length == 0) {
       let iterations = count / enemyFunctions.length;
-      console.log(iterations);
       for (let enemyFuncI = 0; enemyFuncI < enemyFunctions.length; enemyFuncI++) {
         // enemyFunctions[enemyFuncI](iterations, ignorePos);
-        console.log(enemyFuncI);
         let evalString = `${enemyFunctions[enemyFuncI]}(${iterations}, ${ignorePos})`;
-        console.log(evalString);
         //eval necessary because having a regular array of just [this.createProto, (etc)] makes the scope of this.createProto the array. meaning that if createProto calls `this`, it returns the array instead of World. fun!
         eval(evalString);
       }
     } else {
       if (count < enemyFunctions.length) {
         let evalString = `${enemyFunctions[0]}(${count}, ${ignorePos})`;
-        console.log(evalString);
         eval(evalString);
       } else {
         let iterations = count / enemyFunctions.length;
         iterations = Math.floor(iterations);
-        console.log(iterations);
         for (let enemyFuncI = 0; enemyFuncI < enemyFunctions.length; enemyFuncI++) {
           // enemyFunctions[enemyFuncI](iterations, ignorePos);
-          console.log(enemyFuncI);
           let evalString = `${enemyFunctions[enemyFuncI]}(${iterations}, ${ignorePos})`;
-          console.log(evalString);
           eval(evalString);
         }
       }
