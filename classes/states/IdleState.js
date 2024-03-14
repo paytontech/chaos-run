@@ -1,6 +1,8 @@
 class IdleState extends State {
     constructor(subject, popable) {
         super(subject, popable);
+        this.lastTouchY = 0;
+        this.touchDeltaY = 0;
     }
     enter() {
         this.subject.sprite.color = color(255, 0, 0);
@@ -17,6 +19,8 @@ class IdleState extends State {
             return this.subject.leftPhase;
         }
         if (this.jumpPressed() && this.subject.type == "player") {
+            this.touchDeltaY = 0;
+            this.lastTouchY = 0;
             return this.subject.jumpState;
         }
         if (this.subject.type == "player") {
@@ -79,12 +83,14 @@ class IdleState extends State {
     jumpPressed() {
         if (kb.presses(" ")) return true;
         var jumping = false;
-        var touchDeltaY = 0;
+
         if (touches[0] != undefined) {
-            if (touchDeltaY == 0) touchDeltaY = touches[0].y;
-            touchDeltaY = touches[0].y - touchDeltaY;
+            if (this.lastTouchY == 0) this.lastTouchY = touches[0].y;
+            this.touchDeltaY = touches[0].y - this.lastTouchY;
+            this.lastTouchY = touches[0].y;
         }
-        if (touchDeltaY > 100) jumping = true;
+        console.log(this.touchDeltaY);
+        if (this.touchDeltaY > 10 || this.touchDeltaY < -10) jumping = true;
         return jumping;
     }
 }
