@@ -84,7 +84,6 @@ class IdleState extends State {
             if (touchDeltaY == 0) touchDeltaY = touches[0].y;
             touchDeltaY = touches[0].y - touchDeltaY;
         }
-        console.log(touchDeltaY);
         if (touchDeltaY > 100) jumping = true;
         return jumping;
     }
