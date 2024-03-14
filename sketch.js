@@ -22,7 +22,7 @@ function preload() {
 }
 
 function setup() {
-  new Canvas(windowWidth, 400);
+  new Canvas(windowWidth, windowHeight);
   world.gravity.y = 10;
   gameWorld = new World(new Player(width / 4, height / 1.5, 5), false);
   gameWorld.registerEvent(new AntiGravEvent());

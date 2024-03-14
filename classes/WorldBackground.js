@@ -40,11 +40,11 @@ class WorldBackground {
 
         //TODO refactor this mess!
         image(this.bg, this.posX - width, this.posY, width, height);
-        image(floorImg, this.posX - width, canvas.height / 1.4 + this.cameraDelta, width, 25);
+        image(floorImg, this.posX - width, height / 1.4 + this.cameraDelta, width, 25);
         image(this.bg, this.posX, this.posY, width, height);
-        image(floorImg, this.posX, canvas.height / 1.4 + this.cameraDelta, width, 25);
+        image(floorImg, this.posX, height / 1.4 + this.cameraDelta, width, 25);
         image(this.bg, this.posX + width, this.posY, width, height);
-        image(floorImg, this.posX + width, canvas.height / 1.4 + this.cameraDelta, width, 25);
+        image(floorImg, this.posX + width, height / 1.4 + this.cameraDelta, width, 25);
         image(this.bg, this.posX, this.posY - height, width, height);
         image(this.bg, this.posX, this.posY + height, width, height);
         image(this.bg, this.posX - width, this.posY - height, width, height);

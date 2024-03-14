@@ -89,7 +89,6 @@ class IdleState extends State {
             this.touchDeltaY = touches[0].y - this.lastTouchY;
             this.lastTouchY = touches[0].y;
         }
-        console.log(this.touchDeltaY);
         if (this.touchDeltaY > 10 || this.touchDeltaY < -10) jumping = true;
         return jumping;
     }

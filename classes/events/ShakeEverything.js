@@ -13,7 +13,7 @@ class ShakeEverything extends Event {
     gameObjects[0].update(gameWorld);
     camera.x += random(-1, 1);
     var currentRuntime = millis() - this.startTime;
-    if (numbersEqualWithinBounds(currentRuntime % this.flipTime, 0, 50) && currentRuntime >= 1000) {
+    if (numbersEqualWithinBounds(currentRuntime % this.flipTime, 0, 100) && currentRuntime >= 1000) {
       console.log("flippingControls");
       this.flipControls(gameWorld);
     }
