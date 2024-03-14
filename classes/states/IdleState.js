@@ -65,7 +65,7 @@ class IdleState extends State {
     }
     goingRight() {
 
-        if (kb.presses("d")) return true;
+        if (kb.pressing("d")) return true;
         var goingRight = false;
         for (let touch of touches) {
             if (touch.x > width / 2) goingRight = true;
@@ -73,7 +73,7 @@ class IdleState extends State {
         return goingRight;
     }
     goingLeft() {
-        if (kb.presses("a")) return true;
+        if (kb.pressing("a")) return true;
         var goingLeft = false;
         for (let touch of touches) {
             if (touch.x < width / 2) goingLeft = true;

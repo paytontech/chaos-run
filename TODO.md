@@ -1,7 +1,6 @@
 # Chaos Run TODO
 **in order of priority**
 
-- [x] fix ground
 - [ ] airborne swoop state
 - [ ] implement snake
 - [ ] add umbrella sprite
@@ -16,6 +15,7 @@
 - [x] rewrite for p5.play
 - [x] reset functionality
 - [x] make enemies spawn as player progresses
+- [x] fix ground
 
 ## Event Ideas
 - [x] projectiles fall from sky unpredictably
