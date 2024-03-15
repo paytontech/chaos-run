@@ -1,7 +1,6 @@
 # Chaos Run TODO
 **in order of priority**
 
-- [ ] better support for dynamic size window
 - [ ] cleanup [WorldBackground.js](classes/WorldBackground.js)
 - [ ] airborne swoop state
 - [ ] implement snake
@@ -23,3 +22,4 @@
 - [x] projectiles fall from sky unpredictably
 - [x] rain event where you need to stay under an umbrella which changes position randomly
 - [x] blindfold event where the screen turns black
+- [x] thunderstorm event where lightning strikes randomly with only a few seconds to react
