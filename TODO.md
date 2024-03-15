@@ -21,5 +21,4 @@
 ## Event Ideas
 - [x] projectiles fall from sky unpredictably
 - [x] rain event where you need to stay under an umbrella which changes position randomly
-- [x] blindfold event where the screen turns black
 - [x] thunderstorm event where lightning strikes randomly with only a few seconds to react
