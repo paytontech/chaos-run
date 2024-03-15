@@ -20,7 +20,7 @@ class ShakeEverything extends Event {
   }
   activate(gameWorld) {
     this.flipControls(gameWorld);
-    this.flipTime = random([1000, 2000, 3000]);
+    this.flipTime = random(2000);
     console.log(this.flipTime);
   }
   reset(gameWorld) {
