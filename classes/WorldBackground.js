@@ -65,7 +65,6 @@ class WorldBackground {
 
         }
         if (this.posY >= height) {
-            console.log("resetting posY");
             this.posY = 0;
         }
         if (this.posY < -height) {

@@ -119,7 +119,8 @@ class World {
       }
       if (!nameUsed) {
         this.timeBasedEvents.push(event);
-        console.log(`Successfully registered ${event.name} event`);
+        console.info(`Successfully registered ${event.name} event`);
+
       } else {
         console.error(
           "This event's name has been taken or the event has already been registered. Cannot register."
@@ -132,7 +133,6 @@ class World {
   checkEventTimer() {
     if (millis() - this.startTime >= 12500) {
       if (this.eventRunning) {
-        console.log("event stopping");
         this.currentEvent.reset(this);
         this.eventRunning = false;
         this.currentEvent = null;
@@ -140,10 +140,8 @@ class World {
         this.onEventChange();
       } else {
         if (!this.gameObjects[0].killed) {
-          console.log("event running");
           this.currentEvent = random(this.timeBasedEvents);
           this.currentEvent.startTime = millis();
-          console.log(this.currentEvent.name);
           if (this.currentEvent.activate) {
             this.currentEvent.activate(this);
           }
