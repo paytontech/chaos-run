@@ -59,8 +59,8 @@ class Umbrella extends DynamicCreature {
             }
         }
 
-        if (millis() - this.startTime > 5000 && !this.changedDirection) {
-            // console.log((millis() - this.startTime) % 1000);
+        if (millis() % 5000 < 50) {
+            console.log((millis() - this.startTime) % 1000);
             this.sprite.velocity.x = -this.sprite.velocity.x;
             this.changedDirection = true;
         }
