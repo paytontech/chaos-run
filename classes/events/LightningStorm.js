@@ -54,11 +54,12 @@ class Lightning extends DynamicCreature {
 
         }
         if (this.firing) {
+            this.sprite.color = "white";
             if (~~random(0, 25) == 0) {
-                this.sprite.color = "gray";
+                this.sprite.opacity = 0.2;
                 this.sprite.y = height / 2 - (height / 1.34);
             } else {
-                this.sprite.color = "white";
+                this.sprite.opacity = 1.0;
                 this.sprite.y = height / 2;
             }
             let player = gameWorld.gameObjects[0];
