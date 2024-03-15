@@ -14,7 +14,7 @@ class Rainfall extends Event {
         }
         this.umbrella.update(gameWorld, this.rain);
         if (millis() - this.startTime >= 4000 && !this.addedMoreRain) {
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 300; i++) {
                 this.rain.push(new Rain(gameWorld));
             }
             this.addedMoreRain = true;
