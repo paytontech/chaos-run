@@ -4,7 +4,6 @@ class SpawnMoreProto extends Event {
   }
   activate(gameWorld) {
     let randomNumber = ~~random(0, 25);
-    console.log(randomNumber);
     if (randomNumber == 1) {
       //using a for loop here to add a delay to each thing being created, which makes sure each enemy is spread out due to the random function for its position
       var currentDelay = 0;
