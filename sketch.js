@@ -11,6 +11,7 @@ let displayedFailScreen = false;
 let restartButton;
 let icicleSprite;
 let score = 0;
+let playerAnimations = {};
 
 function preload() {
   bgTestImg = loadImage("assets/images/gamebg1.png");
@@ -19,6 +20,11 @@ function preload() {
   floorImg = loadImage("assets/images/ground.png");
   bgTestImg2 = loadImage("assets/images/bgtest.jpg");
   icicleSprite = loadImage("assets/sprites/icicle.png");
+  playerAnimations.idle = loadImage("assets/sprites/player/player-idle.gif");
+  playerAnimations.walking = loadImage("assets/sprites/player/player-walking.gif");
+  playerAnimations.jump = loadImage("assets/sprites/player/player-jump.gif");
+  playerAnimations.fall = loadImage("assets/sprites/player/player-fall.gif");
+  playerAnimations.dying = loadImage("assets/sprites/player/player-dying.gif");
 }
 
 function setup() {
