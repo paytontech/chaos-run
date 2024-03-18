@@ -10,6 +10,8 @@ class RunRightState extends State {
         if (this.subject.sprite.velocity.x < this.subject.speed) {
             this.subject.sprite.applyForceScaled(this.subject.vel.x, 0);
         }
+        this.subject.sprite.image = playerAnimations.walking;
+        this.subject.sprite.scale = createVector(1, 1);
     }
     handleInput() {
         if (!kb.pressing("d")) {

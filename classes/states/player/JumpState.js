@@ -13,7 +13,7 @@ class JumpState extends State {
         this.subject.sprite.mass = this.subjectInitialMass;
     }
     update() {
-
+        this.subject.sprite.image = playerAnimations.jump;
     }
     handleInput() {
         // console.log("jumpstate handleInput");

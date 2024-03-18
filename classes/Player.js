@@ -24,7 +24,9 @@ class Player extends DynamicCreature {
   }
 
   update(gameWorld) {
-    this.fsm.update();
+    if (!this.killed) {
+      this.fsm.update();
+    }
     if (this.killed) {
       this.sprite.vel.x = 0;
     }
@@ -47,6 +49,7 @@ class Player extends DynamicCreature {
   }
   kill() {
     this.killed = true;
+    this.sprite.image = playerAnimations.dying;
     world.gravity.y = 0;
     for (let obj of gameWorld.gameObjects) {
       obj.sprite.collider = "d";

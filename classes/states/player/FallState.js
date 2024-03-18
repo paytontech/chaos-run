@@ -10,7 +10,7 @@ class FallState extends State {
     exit() {
     }
     update() {
-
+        this.subject.sprite.image = playerAnimations.fall;
     }
     handleInput() {
         if (kb.pressing("down") < 30) {

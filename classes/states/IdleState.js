@@ -13,6 +13,7 @@ class IdleState extends State {
     exit() {
     }
     update() {
+        this.subject.sprite.image = playerAnimations.idle;
     }
     handleInput() {
         if (this.subject.type == "proto" || this.subject.type == "airborne") {
