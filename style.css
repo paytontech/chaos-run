@@ -1,7 +1,9 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
+
 canvas {
   display: block;
 }
@@ -9,9 +11,11 @@ canvas {
 @font-face {
   font-family: kanit;
   src: url("assets/fonts/Kanit-SemiBold.ttf");
-  
+
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 button {
   padding: 12px;
   width: 120px;
@@ -26,10 +30,18 @@ button {
 
 button:hover {
   background-color: rgb(173, 173, 173);
-  
+
 }
 
 button:active {
   background-color: gray;
   transition-duration: 0s;
+}
+
+h1 {
+  font-family: kanit;
+}
+
+p {
+  font-family: kanit;
 }

@@ -14,6 +14,9 @@ let score = 0;
 let playerAnimations = {};
 
 function preload() {
+  window.addEventListener('keydown', function (e) {
+    e.preventDefault();
+  });
   bgTestImg = loadImage("assets/images/gamebg1.png");
   protoImg = loadImage("assets/sprites/proto-idle.png");
   protoWalkImg = loadImage("assets/sprites/proto-moving.gif");
@@ -27,9 +30,21 @@ function preload() {
   playerAnimations.dying = loadImage("assets/sprites/player/player-dying.gif");
 }
 
+function addBetaDisclaimer() {
+  let div = document.createElement("div");
+  let h1 = document.createElement("h1");
+  h1.innerHTML = "Chaos Run is in beta!";
+  let p = document.createElement("p");
+  p.innerHTML = "Things will break often!<br/>This code is <i>fresh</i> out of my IDE, and it is usually untested and unfinished.<br/>To track game progress, check out <a href=\"https://github.com/paytontech/chaos-run/blob/main/TODO.md\" target=\"_blank\" rel=\"noopener noreferrer\">the TODO</a>";
+  div.append(h1);
+  div.append(p);
+  document.body.append(div);
+}
+
 function setup() {
   console.clear();
   new Canvas(windowWidth, 400);
+  addBetaDisclaimer();
   world.gravity.y = 10;
   gameWorld = new World(new Player(width / 4, height / 1.5, 5), false);
   gameWorld.registerEvent(new AntiGravEvent());
