@@ -13,7 +13,7 @@ class RunRightState extends State {
         this.subject.sprite.image = playerAnimations.walking;
         this.subject.sprite.scale = createVector(1, 1);
         for (let frame of playerAnimations.walking.gifProperties.frames) {
-            frame.delay = map(this.subject.sprite.velocity.x, 0, this.subject.speed, 500, 100);
+            frame.delay = map(this.subject.sprite.velocity.x, 0, this.subject.speed, 500, 70);
         }
     }
     handleInput() {
