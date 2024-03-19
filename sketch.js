@@ -47,7 +47,6 @@ function setup() {
   addBetaDisclaimer();
   world.gravity.y = 10;
   gameWorld = new World(new Player(width / 4, height / 1.5, 5), false);
-  gameWorld.registerEvent(new AntiGravEvent());
   gameWorld.registerEvent(new Projectiles());
   gameWorld.registerEvent(new Rainfall());
   gameWorld.registerEvent(new LightningStorm());

@@ -9,6 +9,7 @@ class IdleState extends State {
         if (this.subject.type == "player") {
             this.subject.sprite.velocity.y = 0;
         }
+        playerAnimations.idle.reset();
     }
     exit() {
     }
