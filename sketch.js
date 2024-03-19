@@ -9,6 +9,7 @@ let gameWorldBG;
 let bgTestImg2;
 let displayedFailScreen = false;
 let restartButton;
+let saveButton;
 let icicleSprite;
 let score = 0;
 let playerAnimations = {};
@@ -46,7 +47,7 @@ function setup() {
   new Canvas(windowWidth, 400);
   addBetaDisclaimer();
   world.gravity.y = 10;
-  gameWorld = new World(new Player(width / 4, height / 1.5, 5), false);
+  gameWorld = new World(new Player(width / 4, height / 1.5, 5), false, false, null);
   gameWorld.registerEvent(new Projectiles());
   gameWorld.registerEvent(new Rainfall());
   gameWorld.registerEvent(new LightningStorm());
@@ -59,7 +60,7 @@ function setup() {
     }, 3000);
   };
   gameWorldBG = new WorldBackground(gameWorld, [bgTestImg, bgTestImg2], width);
-  restartButton = createButton("Retry?");
+  restartButton = createButton("Retry");
   restartButton.position(width / 2 - 30, height / 2);
   restartButton.hide();
   restartButton.mousePressed(() => {
@@ -70,6 +71,23 @@ function setup() {
     displayedFailScreen = false;
     doingTextAnim = false;
   });
+  saveButton = createButton("Save Replay");
+  saveButton.position(width / 2 - 30, height / 2 + restartButton.height + 5);
+  saveButton.mousePressed(() => {
+    console.log(gameWorld.playerStates[0]);
+    for (let state of gameWorld.playerStates) {
+      state.sprite = null;
+      state.fsm = null;
+      state.idleState = null;
+      state.jumpState = null;
+      state.runLeftState = null;
+      state.runRightState = null;
+      state.fallState = null;
+    }
+    let json = JSON.stringify(gameWorld.playerStates);
+
+  });
+  saveButton.hide();
 }
 
 
@@ -84,6 +102,7 @@ function draw() {
   eventStatusText();
   if (gameWorld.gameObjects[0].killed && !displayedFailScreen) {
     restartButton.show();
+    saveButton.show();
     displayedFailScreen = true;
 
   }

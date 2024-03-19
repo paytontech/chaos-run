@@ -1,6 +1,7 @@
 class World {
-  constructor(player, autoscroll) {
+  constructor(player, autoscroll, replay, replaySeed) {
     this.gameObjects = [player];
+    this.playerStates = [];
     this.timeBasedEvents = [];
     this.currentEvent = null;
     this.eventRunning = false;
@@ -8,6 +9,11 @@ class World {
     this.onEventChange = () => { };
     this.createEnemies(10, false);
     this.autoscroll = autoscroll;
+    this.replay = replay;
+    if (replay) {
+      randomSeed(replaySeed);
+    }
+
   }
   createEnemies(count, ignorePos) {
     let enemyFunctions = ["this.createProto", "this.createAirborne"];
@@ -83,6 +89,7 @@ class World {
     }
   }
   update() {
+
     if (this.autoscroll && this.gameObjects[0].keys.length == 0) {
       if (this.gameObjects[0].sprite.velocity.x > 1) {
         this.gameObjects[0].sprite.velocity.x -= 0.1;
@@ -104,6 +111,10 @@ class World {
       if (!this.gameObjects[0].killed) {
         this.currentEvent.update(this);
       }
+    }
+    if (!this.replay) {
+      let playerCopy = this.gameObjects[0];
+      this.playerStates.push(playerCopy);
     }
   }
   display() {

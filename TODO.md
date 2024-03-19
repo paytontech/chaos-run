@@ -1,7 +1,7 @@
 # Chaos Run TODO
-**in order of priority**
+**in no order. i will do these when i want to**
 
-
+- [ ] replay mode
 - [ ] cleanup [WorldBackground.js](classes/WorldBackground.js)
 - [ ] airborne swoop state
 - [ ] implement snake
