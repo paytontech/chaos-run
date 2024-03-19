@@ -49,6 +49,7 @@ class Player extends DynamicCreature {
   }
   kill() {
     this.killed = true;
+    playerAnimations.dying.reset();
     this.sprite.image = playerAnimations.dying;
     world.gravity.y = 0;
     for (let obj of gameWorld.gameObjects) {

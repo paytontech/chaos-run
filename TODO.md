@@ -1,7 +1,7 @@
 # Chaos Run TODO
 **in order of priority**
 
-- [ ] fix jittery jump & fall animations
+
 - [ ] cleanup [WorldBackground.js](classes/WorldBackground.js)
 - [ ] airborne swoop state
 - [ ] implement snake
@@ -18,6 +18,8 @@
 - [x] make enemies spawn as player progresses
 - [x] fix ground
 - [x] design player sprites & animations
+- [x] fix jittery jump & fall animations
+- [x] player walk animation changes with speed
 
 ## Event Ideas
 - [x] projectiles fall from sky unpredictably

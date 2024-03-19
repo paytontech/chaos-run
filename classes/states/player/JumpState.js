@@ -7,13 +7,15 @@ class JumpState extends State {
         this.subject.sprite.bearing = -90;
         this.subject.sprite.applyForceScaled(this.subject.jumpStrength);
         this.subject.sprite.color = color(0, 255, 0);
-
+        playerAnimations.jump.reset();
     }
     exit() {
         this.subject.sprite.mass = this.subjectInitialMass;
+        playerAnimations.jump.gifProperties.displayIndex = 0;
     }
     update() {
         this.subject.sprite.image = playerAnimations.jump;
+
     }
     handleInput() {
         // console.log("jumpstate handleInput");
