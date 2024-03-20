@@ -11,8 +11,8 @@ class CodeEvent extends Event {
                 example: "8*8 (returns 64)"
             },
             {
-                name: "Write code which returns the square root of 12 squared",
-                result: Math.sqrt(12 * 12),
+                name: "Write code which returns the square root of 13",
+                result: Math.sqrt(13),
                 example: "Math.sqrt(64) (returns 8)"
             },
             {
@@ -65,7 +65,7 @@ class CodeEvent extends Event {
         if (!this.solved) {
             push();
             textSize(24);
-            text(`Your challenge:\n${this.currentChallenge.name}\n(example: ${this.currentChallenge.example})`, 12, height / 4, width);
+            text(`Your challenge:\n${this.currentChallenge.name}\n(notes: ${this.currentChallenge.example})`, 12, height / 4, width);
             pop();
             this.progressBar = new ProgressBar(millis() - this.startTime, this.runtime, width / 4, 20, color(255), color(255, 0, 0));
             this.progressBar.render(createVector(5, height - this.progressBar.maxHeight - 5));
