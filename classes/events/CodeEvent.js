@@ -48,17 +48,8 @@ class CodeEvent extends Event {
             }
         ];
         for (let challenge of challenges) {
-            if (Object.hasOwn(challenge, "variables")) {
-                // let resultString = challenge.result;
-                // resultString = resultString.replace("x", challenge.value);
-
-                let resultString = challenge.result;
-                for (let variable of challenge.variables) {
-                    resultString = resultString.replace(variable.name, variable.value);
-                }
-                challenge.result = eval(resultString);
-                console.log(challenge.value, challenge.result);
-            }
+            challenge.result = this.replaceVariables(challenge, challenge.result);
+            challenge.result = eval(challenge.result);
         }
         this.currentChallenge = random(challenges);
         this.challengeSolved = false;
@@ -80,11 +71,7 @@ class CodeEvent extends Event {
                 this.currentChallenge.result = Date(Date.now()).toLocaleString();
             }
             let val = this.codeBox.value();
-            if (Object.hasOwn(this.currentChallenge, "variables")) {
-                for (let variable of this.currentChallenge.variables) {
-                    val = val.replace(variable.name, variable.value);
-                }
-            }
+            val = this.replaceVariables(this.currentChallenge, val);
             try {
                 if (eval(val) == this.currentChallenge.result) {
                     this.solved = true;
@@ -122,5 +109,19 @@ class CodeEvent extends Event {
         if (!this.solved) {
             gameWorld.gameObjects[0].kill();
         }
+    }
+    replaceVariables(challenge, string) {
+        let resultString = string;
+        if (Object.hasOwn(challenge, "variables")) {
+            // let resultString = challenge.result;
+            // resultString = resultString.replace("x", challenge.value);
+
+
+            for (let variable of challenge.variables) {
+                resultString = resultString.replace(variable.name, variable.value);
+            }
+            challenge.result = eval(resultString);
+        }
+        return resultString;
     }
 }
