@@ -153,6 +153,7 @@ class World {
         if (!this.gameObjects[0].killed) {
           this.currentEvent = random(this.timeBasedEvents);
           this.currentEvent.startTime = millis();
+          this.currentEvent.runtime = 12500;
           if (this.currentEvent.activate) {
             this.currentEvent.activate(this);
           }

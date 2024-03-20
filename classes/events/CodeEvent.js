@@ -25,7 +25,7 @@ class CodeEvent extends Event {
                 variables: [
                     {
                         name: "x",
-                        value: random(0, 100)
+                        value: ~~random(0, 100)
                     }
                 ],
                 result: "x > 50",
@@ -36,11 +36,11 @@ class CodeEvent extends Event {
                 variables: [
                     {
                         name: "x",
-                        value: random(0, 100)
+                        value: ~~random(0, 100)
                     },
                     {
                         name: "z",
-                        value: random(0, 100)
+                        value: ~~random(0, 100)
                     }
                 ],
                 result: "x > z",
@@ -49,6 +49,7 @@ class CodeEvent extends Event {
         ];
         for (let challenge of challenges) {
             challenge.result = this.replaceVariables(challenge, challenge.result);
+            console.log(challenge.result);
             challenge.result = eval(challenge.result);
         }
         this.currentChallenge = random(challenges);
@@ -57,6 +58,7 @@ class CodeEvent extends Event {
         codeBox.position(12, height / 2 + 75);
         this.codeBox = codeBox;
         this.solved = false;
+
     }
     update(gameWorld) {
 
@@ -65,6 +67,8 @@ class CodeEvent extends Event {
             textSize(24);
             text(`Your challenge:\n${this.currentChallenge.name}\n(example: ${this.currentChallenge.example})`, 12, height / 4, width);
             pop();
+            this.progressBar = new ProgressBar(millis() - this.startTime, this.runtime, width / 4, 20, color(255), color(255, 0, 0));
+            this.progressBar.render(createVector(5, height - this.progressBar.maxHeight - 5));
         }
         if (kb.presses("enter")) {
             if (this.currentChallenge.name.includes("date")) {
@@ -103,6 +107,7 @@ class CodeEvent extends Event {
 
             }
         }
+
     }
     reset(gameWorld) {
         this.codeBox.hide();
