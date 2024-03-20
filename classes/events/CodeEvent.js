@@ -18,7 +18,7 @@ class CodeEvent extends Event {
             {
                 name: "Write code which returns the current date as a string",
                 result: Date.now().toLocaleString(),
-                example: "Date(Date.now()) returns the current date in millis, convert this to a locale string."
+                example: "You'll need to use \"toLocaleString()\""
             },
             {
                 name: "Write code which returns true if a given number (x) is greater than 50",
@@ -48,6 +48,7 @@ class CodeEvent extends Event {
             }
         ];
         for (let challenge of challenges) {
+            
             challenge.result = this.replaceVariables(challenge, challenge.result);
             console.log(challenge.result);
             challenge.result = eval(challenge.result);
@@ -125,7 +126,6 @@ class CodeEvent extends Event {
             for (let variable of challenge.variables) {
                 resultString = resultString.replace(variable.name, variable.value);
             }
-            challenge.result = eval(resultString);
         }
         return resultString;
     }
