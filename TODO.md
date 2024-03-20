@@ -25,4 +25,4 @@
 - [x] projectiles fall from sky unpredictably
 - [x] rain event where you need to stay under an umbrella which changes position randomly
 - [x] thunderstorm event where lightning strikes randomly with only a few seconds to react
-- [ ] coding challenge - game pauses & you need to write code to perform a task with a limited amount of time
+- [x] coding challenge - game pauses & you need to write code to perform a task with a limited amount of time

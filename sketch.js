@@ -16,7 +16,7 @@ let playerAnimations = {};
 
 function preload() {
   window.addEventListener('keydown', function (e) {
-    e.preventDefault();
+
   });
   bgTestImg = loadImage("assets/images/gamebg1.png");
   protoImg = loadImage("assets/sprites/proto-idle.png");
