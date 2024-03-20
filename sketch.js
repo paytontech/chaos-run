@@ -33,6 +33,7 @@ function preload() {
 
 function addBetaDisclaimer() {
   let div = document.createElement("div");
+  div.id = "beta-disclaimer";
   let h1 = document.createElement("h1");
   h1.innerHTML = "Chaos Run is in beta!";
   let p = document.createElement("p");
@@ -48,9 +49,10 @@ function setup() {
   addBetaDisclaimer();
   world.gravity.y = 10;
   gameWorld = new World(new Player(width / 4, height / 1.5, 5), false, false, null);
-  gameWorld.registerEvent(new Projectiles());
-  gameWorld.registerEvent(new Rainfall());
-  gameWorld.registerEvent(new LightningStorm());
+  // gameWorld.registerEvent(new Projectiles());
+  // gameWorld.registerEvent(new Rainfall());
+  // gameWorld.registerEvent(new LightningStorm());
+  gameWorld.registerEvent(new CodeEvent());
 
   gameWorld.onEventChange = () => {
     animStartTime = millis();
