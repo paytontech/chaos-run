@@ -23,6 +23,8 @@ class ProtoEnemy extends DynamicCreature {
     if (!this.killed) {
       this.fsm.update();
       this.checkCollision(gameWorld);
+    } else {
+      this.sprite.image = protoImg;
     }
     if (this.killed) {
       gameWorld.gameObjects[0].sprite.overlaps(this.sprite);
