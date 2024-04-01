@@ -67,6 +67,7 @@ class CodeEvent extends Event {
             }
         ];
         for (let challenge of challenges) {
+
             challenge.result = this.replaceVariables(challenge, challenge.result);
             console.log(challenge.result, challenge.name);
             challenge.result = eval(challenge.result);
@@ -145,7 +146,6 @@ class CodeEvent extends Event {
             for (let variable of challenge.variables) {
                 resultString = resultString.replace(variable.name, variable.value);
             }
-            challenge.result = eval(resultString);
         }
         return resultString;
     }
