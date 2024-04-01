@@ -13,6 +13,8 @@ let saveButton;
 let icicleSprite;
 let score = 0;
 let playerAnimations = {};
+let joystick;
+var usingController = false;
 
 function preload() {
   window.addEventListener('keydown', function (e) {
@@ -73,6 +75,9 @@ function setup() {
     displayedFailScreen = false;
     doingTextAnim = false;
   });
+  joystick = createJoystick();
+  joystick.calibrate(true);
+  joystick.onAxesPressed(buttonPushed);
   // saveButton = createButton("Save Replay");
   // saveButton.position(width / 2 - 30, height / 2 + restartButton.height + 5);
   // saveButton.mousePressed(async () => {
@@ -120,6 +125,16 @@ function draw() {
     restartButton.show();
     displayedFailScreen = true;
 
+  }
+  if (displayedFailScreen) {
+    if (controllerHelper.startButton()) {
+      gameWorld.restart();
+      gameWorldBG.posX = 0;
+      restartButton.hide();
+      score = 0;
+      displayedFailScreen = false;
+      doingTextAnim = false;
+    }
   }
   getScore();
   text(`${~~score}pts`, width - width / 4, 50);
@@ -208,4 +223,8 @@ function numbersEqualWithinBounds(num1, num2, bounds) {
     return true;
   }
   return false;
+}
+
+function buttonPushed(e) {
+  console.log(e);
 }

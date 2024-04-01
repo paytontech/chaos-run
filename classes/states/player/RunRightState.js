@@ -17,10 +17,10 @@ class RunRightState extends State {
         }
     }
     handleInput() {
-        if (!kb.pressing("d")) {
+        if (!this.subject.idleState.goingRight()) {
             return this.subject.idleState;
         }
-        if (kb.presses(" ") && this.subject.type == "player") {
+        if (this.subject.idleState.jumpPressed() && this.subject.type == "player") {
             return this.subject.jumpState;
         }
     }

@@ -23,19 +23,23 @@ class JumpState extends State {
         // console.log(this.subject.sprite.mass)
         if (kb.pressing(" ") < 30) {
             this.subject.sprite.applyForce((this.subject.jumpStrength / 800) * kb.pressing(" "));
-        }
 
-        if (kb.presses("down")) {
+        }
+        // console.log(controllerHelper.aButton());
+        if (controllerHelper.aButton() < 60) {
+            this.subject.sprite.applyForce((this.subject.jumpStrength / 800) * controllerHelper.aButton());
+        }
+        if (kb.presses("down") || controllerHelper.dPadDown() > 0) {
             return this.subject.fallState;
         }
 
-        if (kb.pressing("a")) {
+        if (this.subject.idleState.goingLeft()) {
             if (-this.subject.sprite.velocity.x < this.subject.speed) {
                 this.subject.sprite.applyForceScaled(-this.subject.vel.x, 0);
             }
         }
 
-        if (kb.pressing("d")) {
+        if (this.subject.idleState.goingRight()) {
             if (this.subject.sprite.velocity.x < this.subject.speed) {
                 this.subject.sprite.applyForceScaled(this.subject.vel.x, 0);
             }

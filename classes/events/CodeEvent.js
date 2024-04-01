@@ -2,23 +2,82 @@ class CodeEvent extends Event {
     constructor() {
         super();
         this.name = "Code Challenge";
+        this.optionButtons = [];
     }
     activate(gameWorld) {
         const challenges = [
             {
                 name: "Write code which returns 12 squared.",
                 result: 12 * 12,
-                example: "8*8 (returns 64)"
+                example: "8*8 (returns 64)",
+                options: [
+                    {
+                        value: "12 * 12",
+                        correct: true
+                    },
+                    {
+                        value: "Math.pow(12,2)",
+                        correct: true
+                    },
+                    {
+                        value: "144",
+                        correct: true
+                    },
+                    {
+                        value: "Math.sqrt(12)",
+                        correct: false
+                    },
+                    {
+                        value: "Math.square(12)",
+                        correct: false
+                    }
+                ]
             },
             {
                 name: "Write code which returns the square root of 13",
                 result: Math.sqrt(13),
-                example: "Math.sqrt(64) (returns 8)"
+                example: "Math.sqrt(64) (returns 8)",
+                options: [
+                    {
+                        value: "Math.sqrt(3.61)",
+                        correct: false
+                    },
+                    {
+                        value: "Math.sqrt(13)",
+                        correct: true
+                    },
+                    {
+                        value: "~3.61",
+                        correct: true
+                    },
+                    {
+                        value: "13*13",
+                        correct: false
+                    }
+                ]
             },
             {
                 name: "Write code which returns the current date as a string",
                 result: 0,
-                example: "Date(Date.now()) returns the current date in millis, convert this to a locale string."
+                example: "Date(Date.now()) returns the current date in millis, convert this to a locale string.",
+                options: [
+                    {
+                        value: "Date(Date.now())",
+                        correct: false
+                    },
+                    {
+                        value: "Date(Date.now()).toLocaleString()",
+                        correct: true
+                    },
+                    {
+                        value: "Date.now().toLocaleString()",
+                        correct: false
+                    },
+                    {
+                        value: "Date().toLocaleString()",
+                        correct: true
+                    }
+                ]
             },
             {
                 name: "Write code which returns true if a given number (x) is greater than 50",
@@ -29,7 +88,29 @@ class CodeEvent extends Event {
                     }
                 ],
                 result: "x > 50",
-                example: "Use variable \"x\" to represent the number"
+                example: "Use variable \"x\" to represent the number",
+                options: [
+                    {
+                        value: "x > 50",
+                        correct: true
+                    },
+                    {
+                        value: "x < 50",
+                        correct: false
+                    },
+                    {
+                        value: "x > 50 == true",
+                        correct: true
+                    },
+                    {
+                        value: "x >= 50",
+                        correct: false
+                    },
+                    {
+                        value: "x <= 50",
+                        correct: false
+                    }
+                ]
             },
             {
                 name: "Write code which checks returns true if \"x\" is greater than \"z\"",
@@ -44,7 +125,25 @@ class CodeEvent extends Event {
                     }
                 ],
                 result: "x > z",
-                example: "Use variables \"x\" and \"z\" to represent the numbers."
+                example: "Use variables \"x\" and \"z\" to represent the numbers.",
+                options: [
+                    {
+                        value: "x > z",
+                        correct: true
+                    },
+                    {
+                        value: "x < z",
+                        correct: false
+                    },
+                    {
+                        value: "x > z == true",
+                        correct: true
+                    },
+                    {
+                        value: "x is greater than z",
+                        correct: false
+                    }
+                ]
             },
             {
                 name: "Write code which performs x + z, and then returns true if the result is greater than y.",
@@ -63,7 +162,25 @@ class CodeEvent extends Event {
                     }
                 ],
                 result: "(x + z) > y",
-                example: "Use variables \"x\", \"y\", and \"z\" to represent the numbers."
+                example: "Use variables \"x\", \"y\", and \"z\" to represent the numbers.",
+                options: [
+                    {
+                        value: "x + z > y",
+                        correct: true
+                    },
+                    {
+                        value: "if (x + z < y) return true;",
+                        correct: false
+                    },
+                    {
+                        value: "x + y > z",
+                        correct: false
+                    },
+                    {
+                        value: "true",
+                        correct: false
+                    }
+                ]
             }
         ];
         for (let challenge of challenges) {
@@ -79,19 +196,65 @@ class CodeEvent extends Event {
         codeBox.position(12, height / 2 + 75);
         this.codeBox = codeBox;
         this.solved = false;
-
+        this.controllerDelay = 0;
+        if (controllerHelper.usesGamepad) {
+            this.codeBox.hide();
+            this.selectedOption = 0;
+            var optionInt = 0;
+            shuffleArray(this.currentChallenge.options);
+            for (let option of this.currentChallenge.options) {
+                var optionButton = createButton(option.value);
+                optionButton.position(optionButton.width * optionInt + 20, height / 2 + 75);
+                optionButton.mousePressed(() => {
+                    this.submitOption(option);
+                });
+                optionInt += 1;
+                this.optionButtons.push(optionButton);
+            }
+        }
     }
     update(gameWorld) {
 
         if (!this.solved) {
+            for (let index in this.optionButtons) {
+                let button = this.optionButtons[index];
+                if (index == this.selectedOption) {
+                    button.elt.classList.add("selected");
+                } else {
+                    button.elt.classList.remove("selected");
+                }
+            }
+            // console.log(millis() - this.controllerDelay);
+            if (controllerHelper.dPadRight() && millis() - this.controllerDelay > 500
+            ) {
+                if (this.selectedOption + 1 > (this.currentChallenge.options.length - 1)) {
+                    this.selectedOption = 0;
+                } else {
+                    this.selectedOption += 1;
+                }
+                this.controllerDelay = millis();
+            }
+            if (controllerHelper.dPadLeft() && millis() - this.controllerDelay > 500
+            ) {
+                if (this.selectedOption - 1 < 0) {
+                    this.selectedOption = this.currentChallenge.options.length - 1;
+                } else {
+                    this.selectedOption -= 1;
+                }
+                this.controllerDelay = millis();
+            }
+            if (controllerHelper.aButton() > 0) {
+                this.submitOption(this.currentChallenge.options[this.selectedOption]);
+            }
             push();
             textSize(24);
             text(`Your challenge:\n${this.currentChallenge.name}\n(notes: ${this.currentChallenge.example})`, 12, height / 4, width);
+
             pop();
             this.progressBar = new ProgressBar(millis() - this.startTime, this.runtime, width / 4, 20, color(255), color(255, 0, 0));
             this.progressBar.render(createVector(5, height - this.progressBar.maxHeight - 5));
         }
-        if (kb.presses("enter")) {
+        if (kb.presses("enter") && !controllerHelper.usesGamepad) {
             if (this.currentChallenge.name.includes("date")) {
                 this.currentChallenge.result = Date(Date.now()).toLocaleString();
             }
@@ -99,20 +262,13 @@ class CodeEvent extends Event {
             val = this.replaceVariables(this.currentChallenge, val);
             try {
                 if (eval(val) == this.currentChallenge.result) {
-                    this.solved = true;
-                    this.codeBox.hide();
+                    this.win();
                 } else {
-                    console.log(eval(this.codeBox.value()), this.currentChallenge.result);
-                    gameWorld.gameObjects[0].kill();
-
-                    this.codeBox.hide();
+                    this.lose();
                 }
             } catch (err) {
                 console.log(err);
-                console.log(eval(this.codeBox.value()), this.currentChallenge.result);
-                gameWorld.gameObjects[0].kill();
-
-                this.codeBox.hide();
+                this.lose();
             }
         }
         if (this.solved) {
@@ -131,7 +287,7 @@ class CodeEvent extends Event {
 
     }
     reset(gameWorld) {
-        this.codeBox.hide();
+        this.clearUI();
         if (!this.solved) {
             gameWorld.gameObjects[0].kill();
         }
@@ -148,5 +304,29 @@ class CodeEvent extends Event {
             }
         }
         return resultString;
+    }
+    submitOption(option) {
+        console.log(option);
+        if (option.correct) {
+            this.win();
+        } else {
+            this.lose();
+        }
+    }
+    win() {
+        this.solved = true;
+        this.clearUI();
+    }
+    lose() {
+
+        gameWorld.gameObjects[0].kill();
+        this.clearUI();
+    }
+    clearUI() {
+        for (let button of this.optionButtons) {
+            button.hide();
+        }
+        this.optionButtons = [];
+        this.codeBox.hide();
     }
 }

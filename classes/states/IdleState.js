@@ -68,6 +68,7 @@ class IdleState extends State {
     goingRight() {
 
         if (kb.pressing("d")) return true;
+        if (controllerHelper.dPadRight()) return true;
         var goingRight = false;
         for (let touch of touches) {
             if (touch.x > width / 2) goingRight = true;
@@ -76,6 +77,8 @@ class IdleState extends State {
     }
     goingLeft() {
         if (kb.pressing("a")) return true;
+
+        if (controllerHelper.dPadLeft()) return true;
         var goingLeft = false;
         for (let touch of touches) {
             if (touch.x < width / 2) goingLeft = true;
@@ -84,6 +87,7 @@ class IdleState extends State {
     }
     jumpPressed() {
         if (kb.presses(" ")) return true;
+        if (controllerHelper.aButton() > 0) return true;
         var jumping = false;
 
         if (touches[0] != undefined) {

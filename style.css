@@ -38,6 +38,10 @@ button:active {
   transition-duration: 0s;
 }
 
+.selected {
+  background-color: rgb(173, 173, 173);
+}
+
 h1 {
   font-family: kanit;
 }
