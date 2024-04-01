@@ -17,7 +17,7 @@ class CodeEvent extends Event {
             },
             {
                 name: "Write code which returns the current date as a string",
-                result: Date.now().toLocaleString(),
+                result: 0,
                 example: "Date(Date.now()) returns the current date in millis, convert this to a locale string."
             },
             {
@@ -25,7 +25,7 @@ class CodeEvent extends Event {
                 variables: [
                     {
                         name: "x",
-                        value: ~~random(0, 100)
+                        value: ~~random(1, 100)
                     }
                 ],
                 result: "x > 50",
@@ -36,23 +36,43 @@ class CodeEvent extends Event {
                 variables: [
                     {
                         name: "x",
-                        value: ~~random(0, 100)
+                        value: ~~random(1, 100)
                     },
                     {
                         name: "z",
-                        value: ~~random(0, 100)
+                        value: ~~random(1, 100)
                     }
                 ],
                 result: "x > z",
                 example: "Use variables \"x\" and \"z\" to represent the numbers."
+            },
+            {
+                name: "Write code which performs x + z, and then returns true if the result is greater than y.",
+                variables: [
+                    {
+                        name: "x",
+                        value: ~~random(1, 100)
+                    },
+                    {
+                        name: "z",
+                        value: ~~random(1, 100)
+                    },
+                    {
+                        name: "y",
+                        value: ~~random(1, 100)
+                    }
+                ],
+                result: "(x + z) > y",
+                example: "Use variables \"x\", \"y\", and \"z\" to represent the numbers."
             }
         ];
         for (let challenge of challenges) {
             challenge.result = this.replaceVariables(challenge, challenge.result);
-            console.log(challenge.result);
+            console.log(challenge.result, challenge.name);
             challenge.result = eval(challenge.result);
         }
         this.currentChallenge = random(challenges);
+        print(this.currentChallenge);
         this.challengeSolved = false;
         let codeBox = createInput();
         codeBox.position(12, height / 2 + 75);
