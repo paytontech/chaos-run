@@ -1,7 +1,7 @@
 # Chaos Run TODO
 **in no order. i will do these when i want to**
 
-- [ ] oops! vulnerability. make CodeEvent evals "use strict" 
+
 - [ ] replay mode
 - [ ] cleanup [WorldBackground.js](classes/WorldBackground.js)
 - [ ] airborne swoop state
@@ -21,6 +21,7 @@
 - [x] design player sprites & animations
 - [x] fix jittery jump & fall animations
 - [x] player walk animation changes with speed
+- [x] oops! vulnerability. make CodeEvent evals "use strict" 
 
 ## Event Ideas
 - [x] projectiles fall from sky unpredictably
