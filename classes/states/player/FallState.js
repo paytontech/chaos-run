@@ -20,7 +20,7 @@ class FallState extends State {
                 this.subject.sprite.applyForce((this.subject.jumpStrength / 200) * controllerHelper.dPadDown());
             }
         }
-        if (this.subject.sprite.collides(gameWorldBG.floor)) {
+        if (this.subject.sprite.collides(gameWorldBG.floors)) {
             return this.subject.idleState;
         }
     }

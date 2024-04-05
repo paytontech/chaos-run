@@ -5,17 +5,21 @@ class WorldBackground {
         this.bg = imgs[0];
         this.posX = 0;
         this.rangePerImg = rangePerImg;
-        this.floor = new Sprite();
-        this.floor.x = width / 2;
-        this.floor.y = height / 1.34;
-        this.floor.collider = "s";
-        this.floor.h = 25;
-        this.floor.w = width * 8;
-        this.floor.visible = false;
         this.lastCameraX = camera.x;
         this.lastCameraY = camera.y;
         this.posY = 0;
         this.cameraDelta = 0;
+        let floors = new Group();
+        floors.y = height / 1.4;
+        floors.w = width;
+        floors.h = 10;
+        floors.collider = "s";
+        floors.x = (i) => (i * width + (width / 2));
+        floors.amount = 2;
+        floors.img = floorImg;
+        floors.img.width = width;
+        floors.img.height = 10;
+        this.floors = floors;
     }
 
     getBG() {
@@ -37,14 +41,18 @@ class WorldBackground {
         this.cameraDelta -= camera.y - this.lastCameraY;
         this.lastCameraX = camera.x;
         this.lastCameraY = camera.y;
-
-        //TODO refactor this mess!
+        for (let floor of this.floors) {
+            if (floor.x + (floor.w / 2) <= camera.x - width / 2) {
+                floor.x = (floor.w / 2) + width + (camera.x - width / 2);
+            }
+        }
+        //TODO refactor this mess!s
         image(this.bg, this.posX - width, this.posY, width, height);
-        image(floorImg, this.posX - width, height / 1.4 + this.cameraDelta, width, 25);
+        // image(floorImg, this.posX - width, height / 1.4 + this.cameraDelta, width, 25);
         image(this.bg, this.posX, this.posY, width, height);
-        image(floorImg, this.posX, height / 1.4 + this.cameraDelta, width, 25);
+        // image(floorImg, this.posX, height / 1.4 + this.cameraDelta, width, 25);
         image(this.bg, this.posX + width, this.posY, width, height);
-        image(floorImg, this.posX + width, height / 1.4 + this.cameraDelta, width, 25);
+        // image(floorImg, this.posX + width, height / 1.4 + this.cameraDelta, width, 25);
         image(this.bg, this.posX, this.posY - height, width, height);
         image(this.bg, this.posX, this.posY + height, width, height);
         image(this.bg, this.posX - width, this.posY - height, width, height);
@@ -54,14 +62,9 @@ class WorldBackground {
 
         if (this.posX <= -width) {
             this.posX = 0;
-            this.floor.x += width;
-            if (this.gameWorld.gameObjects[0].sprite.x > width * 2) {
-                this.gameWorld.createEnemies(2, false);
-            }
         }
         if (this.posX > width) {
             this.posX = 0;
-            this.floor.x -= width;
 
         }
         if (this.posY >= height) {

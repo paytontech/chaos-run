@@ -34,7 +34,7 @@ class Player extends DynamicCreature {
     gameWorld.deltaXOffset = 0;
 
 
-    if (this.sprite.collides(gameWorldBG.floor)) {
+    if (this.sprite.collides(gameWorldBG.floors)) {
       this.jumping = false;
     }
 
