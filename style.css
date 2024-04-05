@@ -53,3 +53,8 @@ p {
 #beta-disclaimer {
   padding: 12px;
 }
+
+body {
+  background-color: black;
+  color: white;
+}
