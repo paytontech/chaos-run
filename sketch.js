@@ -51,11 +51,11 @@ function setup() {
   addBetaDisclaimer();
   world.gravity.y = 10;
   gameWorld = new World(new Player(width / 4, height / 1.5, 5), false, false, null);
-  // gameWorld.registerEvent(new Projectiles());
-  // gameWorld.registerEvent(new Rainfall());
-  // gameWorld.registerEvent(new LightningStorm());
-  // gameWorld.registerEvent(new CodeEvent());
-  // gameWorld.registerEvent(new PongEvent());
+  gameWorld.registerEvent(new Projectiles());
+  gameWorld.registerEvent(new Rainfall());
+  gameWorld.registerEvent(new LightningStorm());
+  gameWorld.registerEvent(new CodeEvent());
+  gameWorld.registerEvent(new PongEvent());
   gameWorld.registerEvent(new WPMEvent());
   gameWorld.onEventChange = () => {
     animStartTime = millis();
