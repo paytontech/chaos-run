@@ -13,7 +13,8 @@ class World {
     if (replay) {
       randomSeed(replaySeed);
     }
-
+    this.eventRuntime = 12500;
+    this.eventBreaktime = 3500;
   }
   createEnemies(count, ignorePos) {
     let enemyFunctions = ["this.createProto", "this.createAirborne"];
@@ -142,18 +143,20 @@ class World {
     }
   }
   checkEventTimer() {
-    if (millis() - this.startTime >= 12500) {
-      if (this.eventRunning) {
+    if (this.eventRunning) {
+      if (millis() - this.startTime >= this.eventRuntime) {
         this.currentEvent.reset(this);
         this.eventRunning = false;
         this.currentEvent = null;
         this.startTime = millis();
         this.onEventChange();
-      } else {
+      }
+    } else {
+      if (millis() - this.startTime >= this.eventBreaktime) {
         if (!this.gameObjects[0].killed) {
           this.currentEvent = random(this.timeBasedEvents);
           this.currentEvent.startTime = millis();
-          this.currentEvent.runtime = 12500;
+          this.currentEvent.runtime = this.eventRuntime;
           if (this.currentEvent.activate) {
             this.currentEvent.activate(this);
           }
