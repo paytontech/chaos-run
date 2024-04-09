@@ -55,7 +55,8 @@ function setup() {
   // gameWorld.registerEvent(new Rainfall());
   // gameWorld.registerEvent(new LightningStorm());
   // gameWorld.registerEvent(new CodeEvent());
-  gameWorld.registerEvent(new PongEvent());
+  // gameWorld.registerEvent(new PongEvent());
+  gameWorld.registerEvent(new WPMEvent());
   gameWorld.onEventChange = () => {
     animStartTime = millis();
     doingTextAnim = gameWorld.eventRunning;

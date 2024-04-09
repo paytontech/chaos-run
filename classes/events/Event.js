@@ -9,4 +9,7 @@ class Event {
     activate(gameWorld) {
 
     }
+    update() {
+
+    }
 }

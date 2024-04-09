@@ -23,6 +23,7 @@ class PongEvent extends Event {
         this.ball.sprite.remove();
         this.paddle = null;
         this.ball = null;
+        world.gravity.y = 10;
     }
 }
 
@@ -99,8 +100,5 @@ class Ball {
         this.pos.y = this.sprite.y;
         // this.sprite.x += this.velocity.x;
         // this.sprite.y += this.velocity.y;
-    }
-    display() {
-        circle(this.pos.x, this.pos.y, 20);
     }
 }

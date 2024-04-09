@@ -30,4 +30,4 @@
 - [x] coding challenge - game pauses & you need to write code to perform a task with a limited amount of time
 - [ ] WPM challenge - get above a certain WPM typing goal to pass
 - [ ] Coin rush - Loads of coins fall from the sky & you have to get a certain amount to pass
-- [ ] Pong challenge - win one round of Pong
+- [x] Pong challenge - win one round of Pong

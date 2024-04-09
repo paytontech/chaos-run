@@ -1,7 +1,7 @@
 class ProgressBar {
     constructor(value, maxValue, maxWidth, maxHeight, bgColor, fgColor) {
         this.value = value;
-        this.barWidth = map(value, 0, maxValue, 0, maxWidth);
+        this.barWidth = map((value < maxValue) ? value : maxValue, 0, maxValue, 0, maxWidth);
         this.maxValue = maxValue;
         this.maxHeight = maxHeight;
         this.maxWidth = maxWidth;
