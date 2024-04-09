@@ -5,7 +5,7 @@ class World {
     this.timeBasedEvents = [];
     this.currentEvent = null;
     this.eventRunning = false;
-    this.startTime = millis() - 10000;
+    this.startTime = millis() - 2000;
     this.onEventChange = () => { };
     this.createEnemies(10, false);
     this.autoscroll = autoscroll;
@@ -181,7 +181,7 @@ class World {
 
     this.currentEvent = null;
 
-    this.startTime = millis() - 10000;
+    this.startTime = millis() - 2000;
     this.onEventChange = () => { };
   }
 }
