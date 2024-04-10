@@ -15,7 +15,7 @@ class PongEvent extends Event {
         for (let obj of gameWorld.gameObjects) {
             obj.sprite.velocity.x = 0;
             obj.sprite.velocity.y = 0;
-
+            obj.sprite.rotation = 0;
         }
     }
     reset(gameWorld) {
@@ -45,6 +45,7 @@ class Paddle {
         if (kb.pressing("up")) {
             this.sprite.y -= this.speed;
         }
+        this.sprite.overlaps(gameWorldBG.floors);
     }
 }
 
@@ -61,11 +62,12 @@ class Ball {
         this.sprite.x = this.pos.x;
         this.sprite.y = this.pos.y;
         this.sprite.velocity = this.velocity;
-        this.sprite.collider = "k";
+        this.sprite.collider = "d";
 
     }
     update(gameWorld, paddle) {
         this.pos.add(this.velocity);
+        this.sprite.overlaps(gameWorldBG.floors);
         if (this.pos.x + 10 >= camera.x + (width / 2)) {
             this.velocity.x *= -1;
         }
@@ -79,15 +81,7 @@ class Ball {
             this.sprite.overlaps(obj.sprite);
         }
         if (
-            collideRectCircle(
-                paddle.sprite.x,
-                paddle.sprite.y,
-                25,
-                height / 4,
-                this.pos.x,
-                this.pos.y,
-                20
-            )
+            this.sprite.collides(paddle.sprite)
         ) {
             // this.velocity.y *= -1;
             this.velocity.x *= -1;
