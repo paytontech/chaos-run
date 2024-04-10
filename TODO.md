@@ -1,6 +1,7 @@
 # Chaos Run TODO
 **in no order. i will do these when i want to**
 
+- [ ] implement health system
 - [ ] fix floor when resetting
 - [ ] replay mode
 - [ ] cleanup [WorldBackground.js](classes/WorldBackground.js)

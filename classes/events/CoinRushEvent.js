@@ -43,7 +43,7 @@ class CoinRushEvent extends Event {
             });
             this.coins.push(coin);
         }
-        this.coinsNeededToPass = this.coins.length / 4;
+        this.coinsNeededToPass = this.coins.length / 5;
     }
 }
 

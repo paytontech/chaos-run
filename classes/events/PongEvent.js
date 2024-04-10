@@ -36,7 +36,7 @@ class Paddle {
         this.sprite.w = 25;
         this.sprite.h = height / 4;
         this.sprite.collider = "k";
-        this.speed = 2;
+        this.speed = 4;
     }
     update() {
         if (kb.pressing("down")) {
@@ -57,7 +57,7 @@ class Ball {
 
         );
         console.log(this.pos, camera.x, camera.y);
-        this.speed = 3;
+        this.speed = 6;
         this.velocity = createVector(this.speed, this.speed);
         this.sprite = new Sprite();
         this.sprite.d = 20;
