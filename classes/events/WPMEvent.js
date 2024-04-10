@@ -31,6 +31,9 @@ class WPMEvent extends Event {
                 }
             }
             console.log(errors);
+            if (errors > 5) {
+                errors = 5;
+            }
             let wpm = (((this.textField.value().length) / 5) - errors) / (((millis() - this.startTime) / 1000) / 60);
             this.wpm = wpm;
             // console.log(wpm);
