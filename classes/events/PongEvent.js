@@ -29,7 +29,7 @@ class PongEvent extends Event {
 
 class Paddle {
     constructor() {
-        this.pos = createVector(width / 12 + (camera.x - (width / 2)), height / 8 + (camera.x - (width / 2)));
+        this.pos = createVector(100 + (camera.x - (width / 2)), height / 8);
         this.sprite = new Sprite();
         this.sprite.x = this.pos.x;
         this.sprite.y = this.pos.y;
@@ -52,9 +52,11 @@ class Paddle {
 class Ball {
     constructor(paddle) {
         this.pos = createVector(
-            random(paddle.pos.x + 50 + (camera.x - (width / 2)), width + (camera.x - (width / 2))),
+            random(paddle.pos.x + 50 + (camera.x - (width / 2)), (camera.x)),
             random(0, height)
+
         );
+        console.log(this.pos, camera.x, camera.y);
         this.speed = 3;
         this.velocity = createVector(this.speed, this.speed);
         this.sprite = new Sprite();

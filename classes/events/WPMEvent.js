@@ -23,18 +23,7 @@ class WPMEvent extends Event {
         }
         textSize(30);
         if (!this.judging) {
-            let errors = 0;
-            for (let userLetter in this.textField.value()) {
-                // console.log(userLetter, this.prompt[userLetter], this.textField.value()[userLetter]);
-                if (this.prompt[userLetter] != this.textField.value()[userLetter]) {
-                    errors++;
-                }
-            }
-            console.log(errors);
-            if (errors > 5) {
-                errors = 5;
-            }
-            let wpm = (((this.textField.value().length) / 5) - errors) / (((millis() - this.startTime) / 1000) / 60);
+            let wpm = (((this.textField.value().length) / 5)) / (((millis() - this.startTime) / 1000) / 60);
             this.wpm = wpm;
             // console.log(wpm);
         }
