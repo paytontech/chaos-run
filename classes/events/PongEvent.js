@@ -52,8 +52,8 @@ class Paddle {
 class Ball {
     constructor(paddle) {
         this.pos = createVector(
-            random(paddle.pos.x + 50 + (camera.x - (width / 2)), (camera.x)),
-            random(0, height)
+            random(150 + (camera.x - (width / 2)), width + (camera.x - (width / 2))),
+            random(50, height - 50)
 
         );
         console.log(this.pos, camera.x, camera.y);
