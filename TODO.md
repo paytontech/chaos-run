@@ -32,3 +32,5 @@
 - [x] WPM challenge - get above a certain WPM typing goal to pass
 - [x] Coin rush - Loads of coins fall from the sky & you have to get a certain amount to pass
 - [x] Pong challenge - win one round of Pong
+- [ ] (prob won't work, event time constraints) make an LLM say a word without including the word in your prompt
+- [ ] 
