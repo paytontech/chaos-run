@@ -22,10 +22,8 @@ class World {
       let iterations = count / enemyFunctions.length;
       console.log(iterations);
       for (let enemyFuncI = 0; enemyFuncI < enemyFunctions.length; enemyFuncI++) {
-        // enemyFunctions[enemyFuncI](iterations, ignorePos);
         let evalString = `${enemyFunctions[enemyFuncI]}(${iterations}, ${ignorePos})`;
         //eval necessary because having a regular array of just [this.createProto, (etc)] makes the scope of this.createProto the array. meaning that if createProto calls `this`, it returns the array instead of World. fun!
-        // console.log(evalString);
         eval(evalString);
       }
     } else {
@@ -36,7 +34,6 @@ class World {
         let iterations = count / enemyFunctions.length;
         iterations = Math.ceil(iterations);
         for (let enemyFuncI = 0; enemyFuncI < enemyFunctions.length; enemyFuncI++) {
-          // enemyFunctions[enemyFuncI](iterations, ignorePos);
           let evalString = `${enemyFunctions[enemyFuncI]}(${iterations}, ${ignorePos})`;
           eval(evalString);
         }

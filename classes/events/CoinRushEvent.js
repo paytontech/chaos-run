@@ -38,7 +38,6 @@ class CoinRushEvent extends Event {
             let coin = new Coin(() => {
                 this.coinsCollected += 1;
                 let thisIndex = this.coins.indexOf(coin);
-                // console.log(thisIndex);
                 this.coins.splice(thisIndex, 1);
             });
             this.coins.push(coin);

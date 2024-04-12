@@ -32,7 +32,6 @@ class FSM {
   update() {
     this.nextState = this.currentState.handleInput();
     this.pushState(this.nextState);
-    //
     this.nextState = this.currentState.update();
     this.pushState(this.nextState);
   }

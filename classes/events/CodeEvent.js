@@ -224,7 +224,6 @@ class CodeEvent extends Event {
                     button.elt.classList.remove("selected");
                 }
             }
-            // console.log(millis() - this.controllerDelay);
             if (controllerHelper.dPadRight() && millis() - this.controllerDelay > 500
             ) {
                 if (this.selectedOption + 1 > (this.currentChallenge.options.length - 1)) {
@@ -295,10 +294,6 @@ class CodeEvent extends Event {
     replaceVariables(challenge, string) {
         let resultString = string;
         if (Object.hasOwn(challenge, "variables")) {
-            // let resultString = challenge.result;
-            // resultString = resultString.replace("x", challenge.value);
-
-
             for (let variable of challenge.variables) {
                 resultString = resultString.replace(variable.name, variable.value);
             }

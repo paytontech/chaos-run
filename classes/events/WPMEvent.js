@@ -25,7 +25,6 @@ class WPMEvent extends Event {
         if (!this.judging) {
             let wpm = (((this.textField.value().length) / 5)) / (((millis() - this.startTime) / 1000) / 60);
             this.wpm = wpm;
-            // console.log(wpm);
         }
         if (this.wpm < 40) {
             fill('red');

@@ -31,7 +31,6 @@ class Rainfall extends Event {
     }
     activate(gameWorld) {
         this.initPlayerXVelocity = gameWorld.gameObjects[0].vel.x;
-        //needed to compensate for lag caused by massive amounts of rain
         gameWorld.gameObjects[0].vel.x *= 2;
         this.umbrella = new Umbrella(gameWorld);
         for (let i = 0; i < 200; i++) {
@@ -46,7 +45,6 @@ class Umbrella extends DynamicCreature {
         super("umbrella", createVector(random(0 + gameWorld.gameObjects[0].sprite.x, width + gameWorld.gameObjects[0].sprite.x), height / 4), createVector(0, 0), false, false, true, 1, new IdleState());
         this.sprite.remove();
         this.sprite = new Sprite(this.pos.x, this.pos.y, 200, 10, "k");
-        // this.sprite.debug = true;
         this.targetPos = createVector(random(this.sprite.x - 50, this.sprite.x + 50), this.sprite.y);
         this.sprite.velocity.x = random([-1.2, 1.2]);
         this.startTime = millis();
@@ -76,11 +74,9 @@ class Rain extends DynamicCreature {
         this.sprite.collider = "d";
         this.sprite.h = 25;
         this.sprite.w = 5;
-        // this.sprite.debug = true;
         this.sprite.mass = 0.5;
         this.sprite.color = "cyan";
         this.sprite.strokeWeight = 0;
-        // this.sprite.debug = true;
         this.lastPlayerPos = gameWorld.gameObjects[0].sprite.x;
     }
     update(gameWorld, umbrella) {
@@ -106,8 +102,5 @@ class Rain extends DynamicCreature {
                 this.sprite.remove();
             }
         }
-        // if (this.sprite.velocity.y == 0) {
-        //     this.sprite.remove();
-        // }
     }
 }

@@ -23,7 +23,6 @@ class Projectiles extends Event {
         gameWorld.gameObjects[0].update(gameWorld);
         for (let projectile of this.projectiles) {
             projectile.update(gameWorld);
-            // projectile.pos.x -= gameWorld.deltaXOffset;
         }
         this.display();
     }

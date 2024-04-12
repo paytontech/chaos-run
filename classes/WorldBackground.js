@@ -48,16 +48,12 @@ class WorldBackground {
             } else if (floor.x - (floor.w / 2) >= camera.x + (width / 2)) {
 
                 floor.x = (floor.w / 2) - width + (camera.x - (width / 2));
-                // console.log("floor resetting bw" + floor.x);
             }
         }
         //TODO refactor this mess!s
         image(this.bg, this.posX - width, this.posY, width, height);
-        // image(floorImg, this.posX - width, height / 1.4 + this.cameraDelta, width, 25);
         image(this.bg, this.posX, this.posY, width, height);
-        // image(floorImg, this.posX, height / 1.4 + this.cameraDelta, width, 25);
         image(this.bg, this.posX + width, this.posY, width, height);
-        // image(floorImg, this.posX + width, height / 1.4 + this.cameraDelta, width, 25);
         image(this.bg, this.posX, this.posY - height, width, height);
         image(this.bg, this.posX, this.posY + height, width, height);
         image(this.bg, this.posX - width, this.posY - height, width, height);

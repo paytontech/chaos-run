@@ -85,7 +85,6 @@ class Ball {
         if (
             this.sprite.collides(paddle.sprite)
         ) {
-            // this.velocity.y *= -1;
             this.velocity.x *= -1;
         }
         if (this.pos.x + 10 <= camera.x - (width / 2)) {
@@ -94,7 +93,5 @@ class Ball {
         this.sprite.velocity = this.velocity;
         this.pos.x = this.sprite.x;
         this.pos.y = this.sprite.y;
-        // this.sprite.x += this.velocity.x;
-        // this.sprite.y += this.velocity.y;
     }
 }

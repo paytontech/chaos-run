@@ -18,14 +18,10 @@ class JumpState extends State {
 
     }
     handleInput() {
-        // console.log("jumpstate handleInput");
-        // this.subject.sprite.mass -= (kb.pressing(" ") / 120)
-        // console.log(this.subject.sprite.mass)
         if (kb.pressing(" ") < 30) {
             this.subject.sprite.applyForce((this.subject.jumpStrength / 800) * kb.pressing(" "));
 
         }
-        // console.log(controllerHelper.aButton());
         if (controllerHelper.aButton() < 60) {
             this.subject.sprite.applyForce((this.subject.jumpStrength / 800) * controllerHelper.aButton());
         }

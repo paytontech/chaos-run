@@ -1,16 +1,9 @@
 class Player extends DynamicCreature {
   constructor(initX, initY, speed) {
     super("player", createVector(initX, initY), createVector(speed, 0), true, true, true, 100, "idle");
-    // this.type = "player";
-    // this.pos = createVector(initX, initY);
-    // this.vel = createVector(speed, 0);
     this.speed = speed;
     console.log(speed);
     this.killed = false;
-    //jumpphase
-    //0 - ground -> sky
-    //1 - sky -> ground
-    // this.sprite = new Sprite();
     this.initY = initY;
     this.sprite.x = initX;
     this.sprite.y = initY;
