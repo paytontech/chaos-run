@@ -178,7 +178,6 @@ class World {
       this.currentEvent.reset(this);
     }
     for (let obj of this.gameObjects) {
-      if (obj.type != "player") obj.kill();
       if (obj.type != "player") obj.sprite.remove();
     }
     this.gameObjects[0].reset();
