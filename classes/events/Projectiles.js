@@ -45,6 +45,7 @@ class Projectile extends DynamicCreature {
         super("projectile", createVector(random(0 + gameWorld.gameObjects[0].pos.x - (width / 4), width + gameWorld.gameObjects[0].pos.x - (width / 4)), -height), createVector(0, 2), true, false, false, 1);
         this.height = 100;
         this.sprite.remove();
+        this.sprite = null;
         this.sprite = new Sprite(this.pos.x, this.pos.y, 25, this.height, "static");
         this.sprite.image = icicleSprite;
         this.lastCameraX = camera.x;
