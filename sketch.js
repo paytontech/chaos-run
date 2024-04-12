@@ -81,37 +81,6 @@ function setup() {
   joystick = createJoystick();
   joystick.calibrate(true);
   joystick.onAxesPressed(buttonPushed);
-  // saveButton = createButton("Save Replay");
-  // saveButton.position(width / 2 - 30, height / 2 + restartButton.height + 5);
-  // saveButton.mousePressed(async () => {
-  //   console.log(gameWorld.playerStates[0]);
-  //   for (let state of gameWorld.playerStates) {
-  //     state.sprite = null;
-  //     state.fsm = null;
-  //     state.idleState = null;
-  //     state.jumpState = null;
-  //     state.runLeftState = null;
-  //     state.runRightState = null;
-  //     state.fallState = null;
-  //   }
-
-  //   let json = JSON.stringify(gameWorld.playerStates);
-  //   let currentDate = new Date();
-  //   let dateString = currentDate.toLocaleString('en-us', { hour12: true, year: "2-digit", month: "numeric", hour: "numeric", minute: "numeric", day: "numeric" });
-  //   try {
-  //     const fsHandle = await window.showSaveFilePicker({
-  //       suggestedName: `chaosrun-replay-${dateString}.json`
-  //     });
-
-  //     let writable = await fsHandle.createWritable();
-
-  //     await writable.write(json);
-
-  //     await writable.close();
-
-  //   } catch { }
-  // });
-  // saveButton.hide();
 }
 
 
