@@ -32,6 +32,7 @@ class ProtoEnemy extends DynamicCreature {
         this.readyToReset = true;
         this.sprite.remove();
         let indexOfEnemy = gameWorld.gameObjects.indexOf(this);
+        console.log(indexOfEnemy);
         gameWorld.gameObjects.splice(indexOfEnemy, 1);
         gameWorld.createEnemies(1);
         gameWorld.createAirborne(1, true);

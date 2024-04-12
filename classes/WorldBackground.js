@@ -14,8 +14,8 @@ class WorldBackground {
         floors.w = width;
         floors.h = 10;
         floors.collider = "s";
-        floors.x = (i) => (i * width + (width / 2));
-        floors.amount = 2;
+        floors.x = (i) => (i * width + (width / 2)) - width;
+        floors.amount = 5;
         floors.img = floorImg;
         floors.img.width = width;
         floors.img.height = 10;
@@ -41,9 +41,16 @@ class WorldBackground {
         this.cameraDelta -= camera.y - this.lastCameraY;
         this.lastCameraX = camera.x;
         this.lastCameraY = camera.y;
-        for (let floor of this.floors) {
+        for (let index in this.floors) {
+            let floor = this.floors[index];
             if (floor.x + (floor.w / 2) <= camera.x - width / 2) {
                 floor.x = (floor.w / 2) + width + (camera.x - width / 2);
+                gameWorld.createEnemies(4, false);
+            } else if (floor.x - (floor.w / 2) >= camera.x + (width / 2)) {
+
+                floor.x = (floor.w / 2) - width + (camera.x - (width / 2));
+                // console.log("floor resetting bw" + floor.x);
+                gameWorld.createEnemies(4, false);
             }
         }
         //TODO refactor this mess!s

@@ -20,10 +20,12 @@ class World {
     let enemyFunctions = ["this.createProto", "this.createAirborne"];
     if (count % enemyFunctions.length == 0) {
       let iterations = count / enemyFunctions.length;
+      console.log(iterations);
       for (let enemyFuncI = 0; enemyFuncI < enemyFunctions.length; enemyFuncI++) {
         // enemyFunctions[enemyFuncI](iterations, ignorePos);
         let evalString = `${enemyFunctions[enemyFuncI]}(${iterations}, ${ignorePos})`;
         //eval necessary because having a regular array of just [this.createProto, (etc)] makes the scope of this.createProto the array. meaning that if createProto calls `this`, it returns the array instead of World. fun!
+        // console.log(evalString);
         eval(evalString);
       }
     } else {
@@ -32,7 +34,7 @@ class World {
         eval(evalString);
       } else {
         let iterations = count / enemyFunctions.length;
-        iterations = Math.floor(iterations);
+        iterations = Math.ceil(iterations);
         for (let enemyFuncI = 0; enemyFuncI < enemyFunctions.length; enemyFuncI++) {
           // enemyFunctions[enemyFuncI](iterations, ignorePos);
           let evalString = `${enemyFunctions[enemyFuncI]}(${iterations}, ${ignorePos})`;
@@ -42,13 +44,15 @@ class World {
     }
   }
   createProto(count, ignorePos) {
+    console.log("create proto");
     for (let i = 0; i < count; i++) {
       var proposedEnemy = new ProtoEnemy(
-        random(this.gameObjects[0].sprite.x, this.gameObjects[0].sprite.x + width * 2),
+        random(this.gameObjects[0].sprite.x, this.gameObjects[0].sprite.x + (width * 2)),
         height / 1.5,
         1,
         200 + random(0, 100)
       );
+      console.log(proposedEnemy.pos.x);
       if (!ignorePos) {
         for (let enemy of this.gameObjects) {
           while (

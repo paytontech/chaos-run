@@ -58,6 +58,7 @@ function setup() {
   gameWorld.registerEvent(new PongEvent());
   gameWorld.registerEvent(new WPMEvent());
   gameWorld.registerEvent(new CoinRushEvent());
+  // gameWorld.registerEvent(new Event());
   gameWorld.onEventChange = () => {
     animStartTime = millis();
     doingTextAnim = gameWorld.eventRunning;
