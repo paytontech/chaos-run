@@ -7,7 +7,7 @@
 - [ ] cleanup [WorldBackground.js](classes/WorldBackground.js)
 - [ ] airborne swoop state
 - [ ] implement snake
-- [ ] add umbrella sprite
+- [x] add umbrella sprite
 - [ ] map obstacles
 - [ ] collectables
 - [ ] coins

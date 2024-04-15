@@ -15,6 +15,8 @@ let score = 0;
 let playerAnimations = {};
 let joystick;
 var usingController = false;
+let umbrellaIdleImg;
+let umbrellaRainCollisionImg;
 
 function preload() {
   window.addEventListener('keydown', function (e) {
@@ -31,6 +33,8 @@ function preload() {
   playerAnimations.jump = loadImage("assets/sprites/player/player-jump.gif");
   playerAnimations.fall = loadImage("assets/sprites/player/player-fall.gif");
   playerAnimations.dying = loadImage("assets/sprites/player/player-dying.gif");
+  umbrellaIdleImg = loadImage("assets/sprites/umbrella/umbrella-idle.png");
+  umbrellaRainCollisionImg = loadImage("assets/sprites/umbrella/umbrella-raincollision.png");
 }
 
 function addBetaDisclaimer() {
@@ -58,7 +62,7 @@ function setup() {
   gameWorld.registerEvent(new PongEvent());
   gameWorld.registerEvent(new WPMEvent());
   gameWorld.registerEvent(new CoinRushEvent());
-  // gameWorld.registerEvent(new Event());
+  gameWorld.registerEvent(new Event());
   gameWorld.onEventChange = () => {
     animStartTime = millis();
     doingTextAnim = gameWorld.eventRunning;
