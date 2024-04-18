@@ -60,7 +60,7 @@ function setup() {
   gameWorld.registerEvent(new LightningStorm());
   gameWorld.registerEvent(new CodeEvent());
   gameWorld.registerEvent(new PongEvent());
-  gameWorld.registerEvent(new WPMEvent());
+  // gameWorld.registerEvent(new WPMEvent());
   gameWorld.registerEvent(new CoinRushEvent());
   gameWorld.onEventChange = () => {
     animStartTime = millis();
