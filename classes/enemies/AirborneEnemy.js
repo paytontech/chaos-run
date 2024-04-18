@@ -27,4 +27,8 @@ class AirborneEnemy extends DynamicCreature {
             world.gameObjects[0].kill();
         }
     }
+    kill() {
+        console.log("airborne killed");
+        this.killed = true;
+    }
 }
