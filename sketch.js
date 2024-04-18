@@ -34,7 +34,7 @@ function preload() {
   playerAnimations.fall = loadImage("assets/sprites/player/player-fall.gif");
   playerAnimations.dying = loadImage("assets/sprites/player/player-dying.gif");
   umbrellaIdleImg = loadImage("assets/sprites/umbrella/umbrella-idle.png");
-  umbrellaRainCollisionImg = loadImage("assets/sprites/umbrella/umbrella-raincollision.png");
+
 }
 
 function addBetaDisclaimer() {
@@ -62,7 +62,6 @@ function setup() {
   gameWorld.registerEvent(new PongEvent());
   gameWorld.registerEvent(new WPMEvent());
   gameWorld.registerEvent(new CoinRushEvent());
-  gameWorld.registerEvent(new Event());
   gameWorld.onEventChange = () => {
     animStartTime = millis();
     doingTextAnim = gameWorld.eventRunning;

@@ -50,6 +50,7 @@ class Umbrella extends DynamicCreature {
         this.startTime = millis();
         this.changedDirection = false;
         this.lastRainCollision = millis() - 10000;
+        this.sprite.image = umbrellaIdleImg;
     }
     update(gameWorld, rain) {
         // this.sprite.image = umbrellaIdleImg;
@@ -61,11 +62,6 @@ class Umbrella extends DynamicCreature {
             }
         }
         console.log(this.lastRainCollision - millis());
-        if (millis() - this.lastRainCollision < 250 && this.lastRainCollision >= 0) {
-            this.sprite.image = umbrellaRainCollisionImg;
-        } else {
-            this.sprite.image = umbrellaIdleImg;
-        }
 
         if (millis() % 5000 < 50) {
             console.log((millis() - this.startTime) % 1000);
