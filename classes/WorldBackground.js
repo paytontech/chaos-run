@@ -22,6 +22,21 @@ class WorldBackground {
         this.floors = floors;
     }
 
+    reset() {
+        this.floors.remove();
+        let floors = new Group();
+        floors.y = height / 1.4;
+        floors.w = width;
+        floors.h = 10;
+        floors.collider = "s";
+        floors.x = (i) => (i * width + (width / 2)) - width;
+        floors.amount = 5;
+        floors.img = floorImg;
+        floors.img.width = width;
+        floors.img.height = 10;
+        this.floors = floors;
+    }
+
     getBG() {
         var imgIndex = 0;
         imgIndex = ~~(this.gameWorld.xOffset / this.rangePerImg);

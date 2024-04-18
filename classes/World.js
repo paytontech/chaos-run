@@ -184,6 +184,6 @@ class World {
     this.currentEvent = null;
 
     this.startTime = millis() - 2000;
-    this.onEventChange = () => { };
+    gameWorldBG.reset();
   }
 }

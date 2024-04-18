@@ -42,7 +42,7 @@ class CoinRushEvent extends Event {
             });
             this.coins.push(coin);
         }
-        this.coinsNeededToPass = this.coins.length / 5;
+        this.coinsNeededToPass = this.coins.length / 2;
     }
 }
 
@@ -58,7 +58,7 @@ class Coin {
         this.onCollected = onCollected;
     }
     update(gameWorld) {
-        if (this.sprite.collides(gameWorld.gameObjects[0].sprite)) {
+        if (this.sprite.overlaps(gameWorld.gameObjects[0].sprite)) {
             this.sprite.remove();
             this.onCollected();
         }
