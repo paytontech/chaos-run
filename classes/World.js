@@ -174,10 +174,11 @@ class World {
     if (this.currentEvent != null) {
       this.currentEvent.reset(this);
     }
+    this.gameObjects[0].reset();
     for (let obj of this.gameObjects) {
       if (obj.type != "player") obj.sprite.remove();
     }
-    this.gameObjects[0].reset();
+
     this.gameObjects = [this.gameObjects[0]];
     this.createEnemies(5);
 

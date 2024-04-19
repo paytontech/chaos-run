@@ -58,7 +58,7 @@ class Ball {
         );
         console.log(this.pos, camera.x, camera.y);
         this.speed = 6;
-        this.velocity = createVector(this.speed, this.speed);
+        this.velocity = createVector(random([-this.speed, this.speed]), random([-this.speed, this.speed]));
         this.sprite = new Sprite();
         this.sprite.d = 20;
         this.sprite.x = this.pos.x;
