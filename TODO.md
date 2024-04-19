@@ -7,7 +7,6 @@
 - [ ] cleanup [WorldBackground.js](classes/WorldBackground.js)
 - [ ] airborne swoop state
 - [ ] implement snake
-- [x] add umbrella sprite
 - [ ] map obstacles
 - [ ] collectables
 - [ ] coins
@@ -23,6 +22,7 @@
 - [x] fix jittery jump & fall animations
 - [x] player walk animation changes with speed
 - [x] oops! vulnerability. make CodeEvent evals "use strict" 
+- [x] add umbrella sprite
 
 ## Event Ideas
 - [x] projectiles fall from sky unpredictably

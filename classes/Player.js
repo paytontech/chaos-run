@@ -46,7 +46,7 @@ class Player extends DynamicCreature {
     this.sprite.image = playerAnimations.dying;
     world.gravity.y = 0;
     for (let obj of gameWorld.gameObjects) {
-      console.log(obj.type);
+      console.log(obj);
       obj.sprite.collider = "d";
       obj.sprite.bearing = random(-90, 90);
       obj.sprite.rotation = random(0, 360);

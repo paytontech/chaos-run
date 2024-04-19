@@ -42,7 +42,7 @@ class Rainfall extends Event {
 
 class Umbrella extends DynamicCreature {
     constructor(gameWorld) {
-        super("umbrella", createVector(random(0 + gameWorld.gameObjects[0].sprite.x, width + gameWorld.gameObjects[0].sprite.x), height / 4), createVector(0, 0), false, false, true, 1, new IdleState());
+        super("umbrella", createVector(random(0 + gameWorld.gameObjects[0].sprite.x, width + gameWorld.gameObjects[0].sprite.x), height / 3), createVector(0, 0), false, false, true, 1, new IdleState());
         this.sprite.remove();
         this.sprite = new Sprite(this.pos.x, this.pos.y, 200, 10, "k");
         this.targetPos = createVector(random(this.sprite.x - 50, this.sprite.x + 50), this.sprite.y);

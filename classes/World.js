@@ -49,7 +49,7 @@ class World {
         1,
         200 + random(0, 100)
       );
-      console.log(proposedEnemy.pos.x);
+      // console.log(proposedEnemy.pos.x);
       if (!ignorePos) {
         for (let enemy of this.gameObjects) {
           while (

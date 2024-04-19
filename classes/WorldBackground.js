@@ -82,7 +82,6 @@ class WorldBackground {
         }
         if (this.posX > width) {
             this.posX = 0;
-
         }
         if (this.posY >= height) {
             this.posY = 0;
