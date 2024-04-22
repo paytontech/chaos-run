@@ -50,6 +50,10 @@ p {
   font-family: kanit;
 }
 
+.inter {
+  font-family: "Inter", sans-serif;
+}
+
 #beta-disclaimer {
   padding: 12px;
 }
