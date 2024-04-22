@@ -47,11 +47,13 @@ class Player extends DynamicCreature {
     world.gravity.y = 0;
     for (let obj of gameWorld.gameObjects) {
       console.log(obj);
-      obj.sprite.collider = "d";
-      obj.sprite.bearing = random(-90, 90);
-      obj.sprite.rotation = random(0, 360);
-      obj.sprite.applyForceScaled(0, random(100, 500));
-      obj.sprite.applyTorque(random(-20, 20));
+      if (!obj.sprite.removed) {
+        obj.sprite.collider = "d";
+        obj.sprite.bearing = random(-90, 90);
+        obj.sprite.rotation = random(0, 360);
+        obj.sprite.applyForceScaled(0, random(100, 500));
+        obj.sprite.applyTorque(random(-20, 20));
+      }
     }
   }
   reset() {
