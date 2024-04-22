@@ -200,5 +200,5 @@ function numbersEqualWithinBounds(num1, num2, bounds) {
 }
 
 function buttonPushed(e) {
-  // console.log(e);
+  console.log(e);
 }
