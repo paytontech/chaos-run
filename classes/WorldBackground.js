@@ -24,7 +24,8 @@ class WorldBackground {
 
     reset() {
         camera.x = 0;
-        this.floors.remove();
+        this.floors.removeAll();
+        console.log(this.floors);
         let floors = new Group();
         floors.y = height / 1.4;
         floors.w = width;

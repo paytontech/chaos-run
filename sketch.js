@@ -72,12 +72,14 @@ function setup() {
   restartButton.position(width / 2 - 30, height / 2);
   restartButton.hide();
   restartButton.mousePressed(() => {
-    gameWorld.restart();
-    gameWorldBG.posX = 0;
-    restartButton.hide();
-    score = 0;
-    displayedFailScreen = false;
-    doingTextAnim = false;
+    // gameWorld.restart();
+    // gameWorldBG.posX = 0;
+    // restartButton.hide();
+    // score = 0;
+    // displayedFailScreen = false;
+    // doingTextAnim = false;
+    // this is a gross hack but it works
+    window.location.reload();
   });
   joystick = createJoystick();
   joystick.calibrate(true);
