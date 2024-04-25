@@ -2,8 +2,8 @@
 ### Chaos Run uses an Events system as its core gameplay mechanic. Events can be things like acid rain falling down that you need to seek cover for, or icicles falling down that you need to dodge. Chaos Run was built with extensibility in mind, making it easier than ever for anybody to add their own, fully custom events.
 
 ## Table of Contents
-- Event Basics
-- Getting Started
+- [Event Basics](#event-basics)
+- [Getting Started](#getting-started)
 
 ## Event Basics
 ### Event Classes
@@ -174,3 +174,90 @@ class EarthquakeEvent extends Event {
     }
 }
 ```
+
+### Finishing Touches
+
+Let's add a bit more challenge to this event! What if we flipped the controls every few seconds rather than just once? That's pretty simple, thanks to `startTime`!
+
+Chaos Run provides a helper function called `numbersEqualWithinBounds`:
+```js
+function numbersEqualWithinBounds(num1, num2, bounds)
+```
+This function checks if `num1` and `num2` are equal within a range (`bounds`). For instance, `numbersEqualWithinBounds(10, 50, 100)` returns true, because 50 - 10 is within 100.
+
+This is important because of some time inaccuracies. For instance, to check if 2 seconds has passed, you'd expect something like this:
+```js
+if (millis() - this.startTime % 2000 == 0) {
+    //2 seconds has passed
+}
+```
+But, the next frame & `update` function might not be called on the exact millisecond that 2 seconds has passed, so you have to use `numbersEqualWithinBounds`.
+
+Here's what the above code snippet would look like using `numbersEqualWithinBounds`:
+```js
+if (numbersEqualWithinBounds(millis() - this.startTime % 2000, 0, 100)) {
+    //2 seconds (give or take) has passed
+}
+```
+
+With this approach, you do sacrifice some accuracy, but the code becomes a lot more reliable, so we're going to use this approach.
+
+The code for this is very simple, since we put `flipControls` into its own function.
+
+Put this code anywhere in your `update` function:
+```js
+// update(gameWorld) {
+    // prev code ...
+    if (numbersEqualWithinBounds(millis() - this.startTime % 2000, 0, 100)) {
+        this.flipControls(gameWorld)
+    }
+//}
+```
+That's literally it! You've made your own event. Here is the final code for this chapter:
+```js
+class EarthquakeEvent extends Event {
+    constructor() {
+        super() 
+        this.name = "Earthquake"
+        this.flippedControls = false
+    }
+    activate(gameWorld) {
+        this.flipControls(gameWorld)
+    }
+    update(gameWorld) {
+        for (let obj of gameWorld.gameObjects) {
+            obj.update(gameWorld)
+        }
+        camera.x += random(-1, 1)
+        if (numbersEqualWithinBounds(millis() - this.startTime % 2000, 0, 100)) {
+            this.flipControls(gameWorld)
+        }
+    }
+    reset(gameWorld) {
+        if (this.controlsFlipped) {
+            this.flipControls(gameWorld)
+        }
+    }
+    flipControls(gameWorld) {
+        this.controlsFlipped = !this.controlsFlippsed
+
+        let player = gameWorld.gameObjects[0] // the player is always index 0
+        let playerRunLeft = player.runLeftState
+        let playerRunRight = player.runRightState
+        
+        player.runLeftState = playerRunRight
+        player.runRightState = player.runLeftState
+    }
+}
+```
+
+### Registering your Event
+So, you've made your event. Congrats! But, if you play the game, your event won't ever run. This is because the game doesn't know about your event, yet. To tell the game about your event, you need to *register* it.
+
+The code for this is very simple. Open `sketch.js` and **anywhere** in the `setup()` function, type:
+```js
+    gameWorld.registerEvent(new EarthquakeEvent())
+```
+and then run the game! If you still can't get your event to trigger, temporarily comment out all of the other `registerEvent` calls. 
+
+If you get any errors like `"EarthquakeEvent is not defined"`, make sure you import the class in the `index.html` file.
