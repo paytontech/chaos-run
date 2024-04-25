@@ -4,6 +4,10 @@
 ## Table of Contents
 - [Event Basics](#event-basics)
 - [Getting Started](#getting-started)
+- [Classes & Types](#classes--types)
+  - [GameWorld](#gameworld)
+  - Dynamic
+    - DynamicCreature
 
 ## Event Basics
 ### Event Classes
@@ -260,4 +264,97 @@ The code for this is very simple. Open `sketch.js` and **anywhere** in the `setu
 ```
 and then run the game! If you still can't get your event to trigger, temporarily comment out all of the other `registerEvent` calls. 
 
-If you get any errors like `"EarthquakeEvent is not defined"`, make sure you import the class in the `index.html` file.
+If you get any errors like `"EarthquakeEvent is not defined"`, make sure you import the class in the `index.html` file:
+```html
+    <script src="/path/to/EarthquakeEvent.js"></script>
+    <!--<script src="./sketch.js"></script>-->
+```
+
+## Classes & Types
+
+### GameWorld
+GameWorld is the class that contains all info about the current state of the game. This is the class that is passed into your events with `gameWorld`. GameWorld contains the following properties & functions:
+
+**Properties**:
+- `gameObjects` **[Dynamic]**
+  - gameObjects contains all objects in the game (player, enemies).
+  - The current player is **always** gameObjects[0]
+  - To read more about game objects, explore [Dynamic & Others]()
+- `timeBasedEvents` **[Event]** - **Private**
+  - This is an internal array of events. Please **do not directly modify this array**! To register your event, use `registerEvent(event)` instead.
+- `currentEvent` **Event** - **Private**
+  - This variable holds the currently active event, and is `null` when there is no event.
+  - **Never modify this variable!** You may read from it if necessary.
+- `eventRunning` **Bool** - **Private**
+  - This is a simple boolean value that is true if there is an active event and false if there is no active event.
+  - **Never modify this variable!** You may read from it if necessary.
+- `startTime` **Number (millis)** - **Private**
+  - This variable is used to keep track of when to trigger and stop events.
+  - **Never modify this variable!** You should never have to read from this, but you can if necessary.
+- `autoscroll` **Bool**
+  - This variable controls whether or not autoscroll is enabled. If enabled, the camera will continuously move to the right.
+  - You may read from AND modify this variable if necessary, but **reset it to its original value when you're done with it.**
+- `eventRuntime` **Number (millis)** - **Private**
+  - This is the length of time that events run for.
+  - **Never modify this variable!** You should never have to read from it either, please use `this.runtime` in your events instead.
+- `eventBreaktime` **Number (millis)** - **Private**
+  - This is the length of time between events.
+  - **Never modify this variable!** You should never have to read from it either, but you can if necessary.
+
+**Functions**:
+- `createEnemies(count, ignorePos)`
+  - This function spawns `count` enemies, evenly distributing between each type of enemy.
+  - If `ignorePos` is true, the enemies will spawn anywhere on the level, including potentially **right in front of the player**. If false, enemies will spawn at least 75px away from the player.
+  - This function evenly distributes between each type of enemy. For instance, as of writing there are 2 enemies (airborne & proto). If `count` is 4, 2 proto and 2 airborne will be spawned. If `count` if 10, 5 proto and 5 airborne will be spawned. If `count` is not divisible by the # of types of enemies or if count is less than the # of types of enemies, a random distribution of enemies will be spawned.
+- `createProto(count, ignorePos)`
+  - This function spanws `count` Proto enemies
+  - If `ignorePos` is true, the enemies will spawn anywhere on the level, including potentially **right in front of the player**. If false, enemies will spawn at least 75px away from the player.
+- `createAirborne(count, ignorePos)`
+  - This function spawns `count` Airborne enemies
+  - If `ignorePos` is true, the enemies will spawn anywhere on the level, including potentially **right in front of the player**. If false, enemies will spawn at least 75px away from the player.
+- `update()` **Private**
+  - This function either updates all game objects OR calls your event's update function depending on whether or not an event is running.
+  - **Never EVER call this function from your event**! You will overflow the stack & destroy everything.
+- `registerEvent(event)`
+  - This function registers your event with the game. It checks that your event meets the following criteria:
+    - Event has a name
+    - Event name hasn't been taken
+    - Event `reset(gameWorld)` function works properly.
+- `checkEventTimer()` **Private**
+  - This function runs every frame and checks if an event should be terminated or started.
+  - **Never call this function from your event!** You won't break anything, but it'll be a huge performance killer.
+- `restart()`
+  - This function resets the game and game objects to their initial states.
+  - You probably shouldn't ever call this function from within your code, as this function is called when the player is dead and they press the "Replay?" button.
+
+### Dynamic
+Dynamic is the base class of all game objects. Every object in GameWorld's `gameObjects` property conforms to this class. Here are some properties & functions in this class:
+
+**Properties**
+- `pos` **p5.Vector** **DEPRECATED (please use `sprite.x` and `sprite.y` instead**)
+  - This property contains the `x` and `y` position of the object
+- `vel` **p5.Vector** **DEPRECATED (please use `sprite.velocity` instead**)
+  - This property contains the `x` and `y` velocities of the object
+- `dynamicVsDynamic` **Bool**
+  - Controls whether or not the object collides with other dynamic objects
+- `dynamicVsMap` **Bool**
+  - Controls whether or not the object colides with the map.
+- `friendly` **Bool**
+  - Controls whether or not the object is friendly towards other dynamics.
+- `type` **String**
+  - The type of the dynamic (examples: "player" "airborne" "proto")
+- `size` **Number**
+  - The size (in px) of the object.
+- `sprite` **p5play.Sprite**
+  - The sprite of the object [(learn more)](https://p5play.org/learn/sprite.html)
+
+**Functions**
+- `update(gameWorld)`
+  - This function updates the object & ensures it responds to all outside events
+- `display()` **DEPRECATED**
+  - This function would've displayed the object's sprite *before we moved to p5.play*. Now, it does nothing.
+- `interact()` **UNIMPLEMENTED**
+  - This function does nothing for now.
+
+<!-- ### DynamicCreature
+DynamicCreature is a superset of Dynamic that's specifically geared towards entities. Here are the properties & functions: -->
