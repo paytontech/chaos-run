@@ -356,5 +356,31 @@ Dynamic is the base class of all game objects. Every object in GameWorld's `game
 - `interact()` **UNIMPLEMENTED**
   - This function does nothing for now.
 
-<!-- ### DynamicCreature
-DynamicCreature is a superset of Dynamic that's specifically geared towards entities. Here are the properties & functions: -->
+### DynamicCreature
+DynamicCreature is a superset of Dynamic that's specifically geared towards entities. Here are the properties & functions:
+
+**Properties**:
+- `health` **Number**
+  - (mostly unused) The health of the creature
+- `maxHealth` **Number**
+  - The maximum health of the creature
+  - **DO NOT MODIFY THIS VARIABLE!** You may read from it.
+- `jumpStrength` **Number**
+  - The jump strength of the creature
+- `killed` **Bool**
+  - Whether or not the creature is killed
+- `fsm` **FSM**
+  - The FSM (Finite State Machine) controls the various states of the creature. The FSM contains the following states by default:
+    - `idleState` **IdleState** - The idle state (does nothing)
+    - `jumpState` **JumpState** - The jump state (applies jump force to creature)
+    - `fallState` **FallState** - The fall state (applies downward force to creature, intended to be used after the jump state)
+  - You should **never need to modify the FSM**, but if you do, please do not modify it directly and instead use the functions. (docs soon)
+
+**Functions**:
+- `update(gameWorld)`
+  - This function updates the object & ensures it responds to all outside events
+  - NOTE: if you're making your own DynamicCreature, **make sure to call `this.fsm.update()` in your update function.**
+- `display()` **DEPRECATED**
+  - This function would've displayed the object's sprite *before we moved to p5.play*. Now, it does nothing.
+- `interact()` **UNIMPLEMENTED**
+  - This function does nothing for now.
