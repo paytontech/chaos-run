@@ -6,8 +6,8 @@
 - [Getting Started](#getting-started)
 - [Classes & Types](#classes--types)
   - [GameWorld](#gameworld)
-  - Dynamic
-    - DynamicCreature
+  - [Dynamic](#dynamic)
+    - [DynamicCreature](#dynamiccreature)
 
 ## Event Basics
 ### Event Classes
@@ -328,6 +328,8 @@ GameWorld is the class that contains all info about the current state of the gam
   - You probably shouldn't ever call this function from within your code, as this function is called when the player is dead and they press the "Replay?" button.
 
 ### Dynamic
+- `constructor(type, pos, vel, dVD, dVM, friendly)`
+
 Dynamic is the base class of all game objects. Every object in GameWorld's `gameObjects` property conforms to this class. Here are some properties & functions in this class:
 
 **Properties**
@@ -357,6 +359,8 @@ Dynamic is the base class of all game objects. Every object in GameWorld's `game
   - This function does nothing for now.
 
 ### DynamicCreature
+- `constructor(type, pos, vel, dVD, dVM, friendly, health, defaultState)`
+
 DynamicCreature is a superset of Dynamic that's specifically geared towards entities. Here are the properties & functions:
 
 **Properties**:
