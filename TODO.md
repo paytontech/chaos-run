@@ -2,7 +2,6 @@
 **in no order. i will do these when i want to**
 
 - [ ] implement health system
-- [ ] fix floor when resetting
 - [ ] replay mode
 - [ ] cleanup [WorldBackground.js](classes/WorldBackground.js)
 - [ ] airborne swoop state
@@ -21,7 +20,8 @@
 - [x] design player sprites & animations
 - [x] fix jittery jump & fall animations
 - [x] player walk animation changes with speed
-- [x] oops! vulnerability. make CodeEvent evals "use strict" 
+- [x] oops! vulnerability. make CodeEvent evals "use strict"
+- [x] fix floor when resetting
 - [x] add umbrella sprite
 
 ## Event Ideas
