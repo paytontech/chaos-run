@@ -28,7 +28,7 @@ class World {
       }
     } else {
       if (count < enemyFunctions.length) {
-        let evalString = `${enemyFunctions[0]}(${count}, ${ignorePos})`;
+        let evalString = `${enemyFunctions[random(0, 1)]}(${count}, ${ignorePos})`;
         eval(evalString);
       } else {
         let iterations = count / enemyFunctions.length;
@@ -118,9 +118,6 @@ class World {
       let playerCopy = this.gameObjects[0];
       this.playerStates.push(playerCopy);
     }
-  }
-  display() {
-
   }
   registerEvent(event) {
     if (event.name != null) {

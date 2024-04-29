@@ -94,7 +94,6 @@ function draw() {
   if (!gameWorld.gameObjects[0].killed) {
     gameWorld.update();
   }
-  gameWorld.display();
   eventStatusText();
   if (gameWorld.gameObjects[0].killed && !displayedFailScreen) {
     restartButton.show();
