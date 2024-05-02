@@ -31,7 +31,6 @@ function preload() {
   playerAnimations.fall = loadImage("assets/sprites/player/player-fall.gif");
   playerAnimations.dying = loadImage("assets/sprites/player/player-dying.gif");
   umbrellaIdleImg = loadImage("assets/sprites/umbrella/umbrella-idle.png");
-
 }
 
 function addBetaDisclaimer() {
