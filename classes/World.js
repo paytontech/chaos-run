@@ -28,7 +28,7 @@ class World {
       }
     } else {
       if (count < enemyFunctions.length) {
-        let evalString = `${enemyFunctions[random(0, 1)]}(${count}, ${ignorePos})`;
+        let evalString = `${enemyFunctions[random([0, 1])]}(${count}, ${ignorePos})`;
         eval(evalString);
       } else {
         let iterations = count / enemyFunctions.length;
