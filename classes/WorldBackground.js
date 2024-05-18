@@ -62,12 +62,13 @@ class WorldBackground {
             let floor = this.floors[index];
             if (floor.x + (floor.w / 2) <= camera.x - width / 2) {
                 floor.x = (floor.w / 2) + width + (camera.x - width / 2);
+                gameWorld.createEnemies(4, false)
             } else if (floor.x - (floor.w / 2) >= camera.x + (width / 2)) {
 
                 floor.x = (floor.w / 2) - width + (camera.x - (width / 2));
             }
         }
-        //TODO refactor this mess!s
+        //TODO refactor this mess!
         image(this.bg, this.posX - width, this.posY, width, height);
         image(this.bg, this.posX, this.posY, width, height);
         image(this.bg, this.posX + width, this.posY, width, height);
